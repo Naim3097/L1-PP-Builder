@@ -479,7 +479,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     );
 };
 
-const TopBar = ({ activeTab, device, setDevice, onPreview }) => {
+const TopBar = ({ activeTab, device, setDevice, onPreview, onPublish }) => {
     return (
         <div className="app-header">
             <div className="header-content">
@@ -525,8 +525,8 @@ const TopBar = ({ activeTab, device, setDevice, onPreview }) => {
                             <button className="btn-ghost btn-sm" onClick={onPreview}>
                                 <i className="ri-eye-line mr-1"></i> Preview
                             </button>
-                            <button className="btn-primary btn-sm">
-                                Publish
+                            <button className="btn-primary btn-sm" onClick={onPublish}>
+                                <i className="ri-download-cloud-2-line mr-1"></i> Publish
                             </button>
                         </>
                     )}
@@ -781,12 +781,15 @@ const PropertiesPanel = ({ selectedElement, onUpdateElement, onDeleteElement }) 
 };
 
 const ElementRenderer = ({ el, onOpenCheckout, device }) => {
+    const isMobile = device === 'mobile';
+    const paddingClass = isMobile ? 'p-4' : 'p-8';
+
     return (
-        <div className="p-8" style={{ backgroundColor: el.props.bgColor || 'transparent', color: el.props.textColor || 'inherit' }}>
+        <div className={paddingClass} style={{ backgroundColor: el.props.bgColor || 'transparent', color: el.props.textColor || 'inherit' }}>
             {el.type === 'hero_modern_01' && (
                 <div className="text-center space-y-6">
-                    <h1 className="text-4xl font-bold leading-tight" style={{ color: el.props.textColor || '#111827' }}>{el.props.headline || "Headline"}</h1>
-                    <p className="text-xl max-w-2xl mx-auto" style={{ color: el.props.textColor ? `${el.props.textColor}cc` : '#4b5563' }}>{el.props.subheadline || "Subheadline"}</p>
+                    <h1 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-bold leading-tight`} style={{ color: el.props.textColor || '#111827' }}>{el.props.headline || "Headline"}</h1>
+                    <p className={`${isMobile ? 'text-lg' : 'text-xl'} max-w-2xl mx-auto`} style={{ color: el.props.textColor ? `${el.props.textColor}cc` : '#4b5563' }}>{el.props.subheadline || "Subheadline"}</p>
                     
                     {el.props.mediaUrl && (
                         <div className="my-6 rounded-xl overflow-hidden shadow-lg max-w-2xl mx-auto">
@@ -809,19 +812,23 @@ const ElementRenderer = ({ el, onOpenCheckout, device }) => {
                 <div className="space-y-6">
                     <h2 className="text-2xl font-bold text-center" style={{ color: el.props.textColor || 'inherit' }}>{el.props.title || "Features"}</h2>
                     <div className="responsive-grid" style={{ '--cols': el.props.columns || 3 }}>
-                        {(el.props.features || [
-                            { title: "Feature 1", description: "Description here." },
-                            { title: "Feature 2", description: "Description here." },
-                            { title: "Feature 3", description: "Description here." }
-                        ]).slice(0, el.props.columns || 3).map((feature, i) => (
-                            <div key={i} className="p-6 rounded-xl border border-gray-100" style={{ backgroundColor: el.props.cardColor || '#f9fafb' }}>
-                                <div className="w-10 h-10 bg-blue-100 rounded-lg mb-4 flex items-center justify-center text-blue-600">
-                                    <i className="ri-star-line text-xl"></i>
+                        {(el.props.features || []).length === 0 ? (
+                            <div className="text-center text-gray-400 italic p-4 border border-dashed border-gray-300 rounded-lg">No features added yet.</div>
+                        ) : (
+                            (el.props.features || [
+                                { title: "Feature 1", description: "Description here." },
+                                { title: "Feature 2", description: "Description here." },
+                                { title: "Feature 3", description: "Description here." }
+                            ]).slice(0, el.props.columns || 3).map((feature, i) => (
+                                <div key={i} className="p-6 rounded-xl border border-gray-100" style={{ backgroundColor: el.props.cardColor || '#f9fafb' }}>
+                                    <div className="w-10 h-10 bg-blue-100 rounded-lg mb-4 flex items-center justify-center text-blue-600">
+                                        <i className="ri-star-line text-xl"></i>
+                                    </div>
+                                    <h3 className="font-bold mb-2 text-gray-900">{feature.title}</h3>
+                                    <p className="text-sm text-gray-500">{feature.description}</p>
                                 </div>
-                                <h3 className="font-bold mb-2 text-gray-900">{feature.title}</h3>
-                                <p className="text-sm text-gray-500">{feature.description}</p>
-                            </div>
-                        ))}
+                            ))
+                        )}
                     </div>
                 </div>
             )}
@@ -829,16 +836,20 @@ const ElementRenderer = ({ el, onOpenCheckout, device }) => {
             {el.type === 'testimonial_slider_01' && (
                 <div className="space-y-8">
                     <h2 className="text-2xl font-bold text-center" style={{ color: el.props.textColor || 'inherit' }}>{el.props.title || "What People Say"}</h2>
-                    <div className={`grid grid-cols-1 ${device === 'mobile' ? '' : 'md:grid-cols-2'} gap-6`}>
-                        {(el.props.reviews || [{author: "John Doe", text: "Great product!"}, {author: "Jane Smith", text: "Loved it."}]).map((review, i) => (
-                            <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                                <div className="flex text-yellow-400 mb-3">
-                                    <i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i>
+                    <div className={`grid grid-cols-1 ${isMobile ? '' : 'md:grid-cols-2'} gap-6`}>
+                        {(el.props.reviews || []).length === 0 ? (
+                            <div className="text-center text-gray-400 italic p-4 border border-dashed border-gray-300 rounded-lg col-span-full">No reviews added yet.</div>
+                        ) : (
+                            (el.props.reviews || [{author: "John Doe", text: "Great product!"}, {author: "Jane Smith", text: "Loved it."}]).map((review, i) => (
+                                <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                                    <div className="flex text-yellow-400 mb-3">
+                                        <i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i>
+                                    </div>
+                                    <p className="text-gray-600 italic mb-4">"{review.text}"</p>
+                                    <div className="font-bold text-gray-900">- {review.author}</div>
                                 </div>
-                                <p className="text-gray-600 italic mb-4">"{review.text}"</p>
-                                <div className="font-bold text-gray-900">- {review.author}</div>
-                            </div>
-                        ))}
+                            ))
+                        )}
                     </div>
                 </div>
             )}
@@ -1838,6 +1849,24 @@ const App = () => {
         setPreviewMode(true);
     };
 
+    const handlePublish = () => {
+        const data = {
+            elements,
+            funnelSettings,
+            publishedAt: new Date().toISOString()
+        };
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `funnel-export-${Date.now()}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        alert('Project configuration downloaded successfully!');
+    };
+
     const selectedElement = elements.find(el => el.id === selectedId);
 
     if (previewMode) {
@@ -1890,6 +1919,7 @@ const App = () => {
                         device={device} 
                         setDevice={setDevice} 
                         onPreview={handlePreview}
+                        onPublish={handlePublish}
                     />
                     
                     <div className="workspace">
