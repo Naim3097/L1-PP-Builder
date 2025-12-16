@@ -1,0 +1,63 @@
+{
+    "hero": {
+        "headline": "Hassle-Free Puspakom Inspection Service",
+        "subheadline": "We pick up your car, handle the inspection, and return it to your doorstep. Save time and avoid the queue!",
+        "cta_text": "Book Inspection Now",
+        "media_type": "image",
+        "media_url": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+    },
+    "form": {
+        "title": "Schedule Your Inspection",
+        "fields": [
+            {
+                "type": "text",
+                "label": "Car Model & Year",
+                "placeholder": "e.g. Myvi 2018"
+            },
+            {
+                "type": "select",
+                "label": "Service Type",
+                "options": [
+                    "B5 Transfer Ownership",
+                    "Road Tax Renewal",
+                    "E-Hailing Inspection"
+                ]
+            },
+            {
+                "type": "date",
+                "label": "Preferred Date"
+            }
+        ],
+        "cta": "Get Quote & Book"
+    },
+    "reviews": [
+        {
+            "author": "Ahmad Z.",
+            "text": "Saved me 4 hours of waiting at Puspakom. Worth every ringgit!"
+        },
+        {
+            "author": "Sarah L.",
+            "text": "Very professional runner. My car was returned safely."
+        }
+    ],
+    "faq": [
+        {
+            "q": "Is my car insured during the process?",
+            "a": "Yes, our runners are covered by comprehensive liability insurance."
+        },
+        {
+            "q": "How long does it take?",
+            "a": "Usually 3-4 hours depending on the queue at the center."
+        }
+    ],
+    "theme": {
+        "primary": "#0056b3",
+        "bg": "#f0f4f8",
+        "text": "#333333",
+        "light_bg": "#ffffff",
+        "font_heading": "Roboto, sans-serif",
+        "font_body": "Open Sans, sans-serif",
+        "google_fonts": "Roboto:700|Open+Sans:400,600",
+        "radius": "8px"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "hero": {
+        "headline": "Achieve Glass Skin in 7 Days",
+        "subheadline": "The viral Korean formula that hydrates, brightens, and repairs your skin barrier overnight.",
+        "cta_text": "Get Your Glow Kit",
+        "media_type": "image",
+        "media_url": "https://images.unsplash.com/photo-1556228552-523de5029136?auto=format&fit=crop&w=800&q=80"
+    },
+    "variants": [
+        { "id": "starter", "label": "Starter Kit", "price": 49.00, "desc": "1 Month Supply" },
+        { "id": "glow", "label": "Glow Bundle", "price": 89.00, "desc": "3 Month Supply + Free Serum", "best_value": true },
+        { "id": "ultimate", "label": "Ultimate Spa Set", "price": 149.00, "desc": "Full Routine + Jade Roller" }
+    ],
+    "products": {
+        "bump": { "id": "mask", "label": "Add 5x Sheet Masks", "price": 14.90 },
+        "upsell": { "id": "eye_cream", "label": "Brightening Eye Cream", "price": 29.00 }
+    },
+    "upsell_page": {
+        "headline": "Wait! Your Routine Isn't Complete...",
+        "subheadline": "Add our award-winning Eye Cream for 50% OFF. Banish dark circles instantly.",
+        "image_url": "https://images.unsplash.com/photo-1571781565036-d3f7595ca3e4?auto=format&fit=crop&w=400&q=80",
+        "cta_yes": "Yes! Add to Order - $29",
+        "cta_no": "No thanks, I don't want brighter eyes"
+    },
+    "theme": {
+        "primary": "#ff4081",
+        "bg": "#fff0f5"
+    }
+}

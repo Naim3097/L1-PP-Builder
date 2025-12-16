@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureLife - Family Protection Plan</title>
+    <style>
+        :root {
+            --primary-color: #0d47a1;
+            --secondary-color: #1565c0;
+            --accent-color: #ff6f00;
+            --bg-color: #f4f6f8;
+            --text-color: #333;
+            --white: #ffffff;
+            --radius: 8px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --font-main: 'Roboto', sans-serif;
+        }
+        body { font-family: var(--font-main); margin: 0; padding: 0; color: var(--text-color); background: var(--bg-color); line-height: 1.6; }
+        h1, h2, h3 { color: var(--primary-color); margin-top: 0; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        .btn-cta {
+            background-color: var(--accent-color); color: white; padding: 1rem 2rem;
+            font-size: 1.1rem; border: none; border-radius: var(--radius); cursor: pointer; font-weight: 700;
+            transition: all 0.3s; box-shadow: 0 4px 10px rgba(255, 111, 0, 0.3); text-transform: uppercase; letter-spacing: 1px;
+            width: 100%;
+        }
+        .btn-cta:hover { background-color: #e65100; transform: translateY(-2px); }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; color: #555; }
+        .form-control { 
+            width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: var(--radius); 
+            box-sizing: border-box; font-size: 1rem; transition: border 0.3s;
+        }
+        .form-control:focus { border-color: var(--primary-color); outline: none; }
+
+        /* Hero Split */
+        .hero-section { background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%); padding: 4rem 0; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        
+        .trust-badge { display: inline-flex; align-items: center; background: #e8eaf6; padding: 5px 15px; border-radius: 20px; color: var(--primary-color); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+
+        /* Cards */
+        .feature-card { background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); text-align: center; transition: transform 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); }
+
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-text { text-align: center; }
+            .hero-form { margin-top: 2rem; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        window.FUNNEL_DATA = {
+            "hero": {
+                "headline": "Secure Your Family's Future for Less Than RM5/Day",
+                "subheadline": "Get up to RM500,000 Life Coverage + Critical Illness Protection. No medical checkup required for applicants under 40.",
+                "bullets": [
+                    "Guaranteed Acceptance",
+                    "Payout within 5 Working Days",
+                    "Cover COVID-19 & Dengue"
+                ]
+            },
+            "plans": [
+                { "name": "Basic", "price": "RM 45/mo", "cover": "RM 100,000" },
+                { "name": "Standard", "price": "RM 85/mo", "cover": "RM 300,000" },
+                { "name": "Premium", "price": "RM 150/mo", "cover": "RM 500,000" }
+            ],
+            "reviews": [
+                { "author": "Sarah L.", "text": "The claim process was incredibly fast when my husband was hospitalized. Thank you SecureLife." },
+                { "author": "Ahmad Z.", "text": "Affordable rates for a comprehensive plan. Highly recommended for young families." }
+            ]
+        };
+    </script>
+</head>
+<body>
+    <!-- NAV -->
+    <nav style="background: white; padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-weight: 700; font-size: 1.5rem; color: var(--primary-color);">SecureLife<span style="color:var(--accent-color)">.</span></div>
+            <div style="font-size: 0.9rem; font-weight: 600;">📞 1-800-88-LIFE</div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="trust-badge">🛡️ PIDM Member & Bank Negara Approved</div>
+                <h1 id="hero-headline" style="font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem;"></h1>
+                <p id="hero-subheadline" style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;"></p>
+                <ul id="hero-bullets" style="list-style: none; padding: 0; margin-bottom: 2rem;"></ul>
+                <div style="display: flex; gap: 1rem; align-items: center; margin-top: 2rem;">
+                    <img src="https://via.placeholder.com/80x40?text=Allianz" alt="Partner" style="opacity: 0.6; filter: grayscale(100%);">
+                    <img src="https://via.placeholder.com/80x40?text=Zurich" alt="Partner" style="opacity: 0.6; filter: grayscale(100%);">
+                    <img src="https://via.placeholder.com/80x40?text=Etiqa" alt="Partner" style="opacity: 0.6; filter: grayscale(100%);">
+                </div>
+            </div>
+            
+            <div class="hero-form" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border-top: 5px solid var(--accent-color);">
+                <h3 style="text-align: center; margin-bottom: 0.5rem;">Get Your Free Quote</h3>
+                <p style="text-align: center; font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">Takes less than 60 seconds.</p>
+                
+                <form id="quote-form" onsubmit="event.preventDefault(); window.submitQuote();">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" placeholder="e.g. Ali bin Abu" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label class="form-label">Age</label>
+                            <input type="number" class="form-control" placeholder="30" min="18" max="70" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Smoker?</label>
+                            <select class="form-control">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Coverage Amount Needed</label>
+                        <select class="form-control">
+                            <option value="100k">RM 100,000</option>
+                            <option value="300k">RM 300,000</option>
+                            <option value="500k">RM 500,000</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number (for WhatsApp Quote)</label>
+                        <input type="tel" class="form-control" placeholder="012-3456789" required>
+                    </div>
+                    <button type="submit" class="btn-cta">Calculate Premium</button>
+                </form>
+                <p style="text-align: center; font-size: 0.75rem; color: #999; margin-top: 1rem;">By clicking, you agree to our T&C. Your data is secure.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANS GRID -->
+    <section style="padding: 5rem 0; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Popular Plans</h2>
+            <div id="plans-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;"></div>
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section style="padding: 5rem 0; background: var(--bg-color);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; align-items: center;">
+                <div>
+                    <h2>Why 10,000+ Malaysians Choose SecureLife</h2>
+                    <p style="color: #555; margin-bottom: 1.5rem;">We simplify insurance. No jargon, no hidden fees, just pure protection for the ones you love.</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center;">
+                            <span style="background: #e3f2fd; color: var(--primary-color); padding: 5px; border-radius: 50%; margin-right: 10px;">⚡</span>
+                            <strong>Fast Claims:</strong> 98% of claims approved within 48 hours.
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center;">
+                            <span style="background: #e3f2fd; color: var(--primary-color); padding: 5px; border-radius: 50%; margin-right: 10px;">💰</span>
+                            <strong>Affordable:</strong> Plans tailored to your budget.
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center;">
+                            <span style="background: #e3f2fd; color: var(--primary-color); padding: 5px; border-radius: 50%; margin-right: 10px;">📱</span>
+                            <strong>Digital First:</strong> Manage everything via our app.
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80" alt="Happy Family" style="width: 100%; border-radius: 12px; box-shadow: var(--shadow);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section style="padding: 5rem 0; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Real Stories</h2>
+            <div id="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;"></div>
+        </div>
+    </section>
+
+    <!-- LOADING MODAL -->
+    <div id="loading-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); z-index: 3000; align-items: center; justify-content: center; flex-direction: column;">
+        <div style="width: 50px; height: 50px; border: 5px solid #eee; border-top: 5px solid var(--accent-color); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem;"></div>
+        <h3 style="color: var(--primary-color);">Calculating Your Premium...</h3>
+        <p>Analyzing risk profile...</p>
+    </div>
+
+    <!-- RESULT MODAL -->
+    <div id="result-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3001; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 2.5rem; border-radius: 12px; text-align: center; max-width: 450px; margin: 20px; position: relative;">
+            <button onclick="document.getElementById('result-modal').style.display='none'" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎉</div>
+            <h2 style="margin-bottom: 0.5rem; color: var(--primary-color);">Good News!</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">You are eligible for our <strong>Standard Plan</strong>.</p>
+            
+            <div style="background: #f0f8ff; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px dashed var(--primary-color);">
+                <div style="font-size: 0.9rem; color: #555;">Estimated Monthly Premium</div>
+                <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent-color);">RM 85<span style="font-size: 1rem; color: #999;">/mo</span></div>
+            </div>
+
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">We have sent the full quotation to your WhatsApp.</p>
+            <button class="btn-cta" onclick="document.getElementById('result-modal').style.display='none'">Check WhatsApp</button>
+        </div>
+    </div>
+
+    <style>
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+
+    <script>
+        (function init() {
+            // Hero
+            document.getElementById('hero-headline').innerText = window.FUNNEL_DATA.hero.headline;
+            document.getElementById('hero-subheadline').innerText = window.FUNNEL_DATA.hero.subheadline;
+            document.getElementById('hero-bullets').innerHTML = window.FUNNEL_DATA.hero.bullets.map(b => `<li style="margin-bottom: 10px; display: flex; align-items: center;"><span style="color: var(--accent-color); margin-right: 10px; font-weight:bold;">✓</span> ${b}</li>`).join('');
+
+            // Plans
+            document.getElementById('plans-grid').innerHTML = window.FUNNEL_DATA.plans.map(p => `
+                <div class="feature-card" style="border-top: 4px solid ${p.name === 'Standard' ? 'var(--accent-color)' : '#eee'}; position: relative;">
+                    ${p.name === 'Standard' ? '<div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">MOST POPULAR</div>' : ''}
+                    <h3 style="margin-bottom: 0.5rem;">${p.name}</h3>
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0.5rem;">${p.price}</div>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Coverage: ${p.cover}</p>
+                    <button class="btn-cta" style="background: ${p.name === 'Standard' ? 'var(--accent-color)' : '#ccc'}; font-size: 0.9rem; padding: 0.8rem 1.5rem;">Select Plan</button>
+                </div>
+            `).join('');
+
+            // Reviews
+            document.getElementById('reviews-grid').innerHTML = window.FUNNEL_DATA.reviews.map(r => `
+                <div style="background: #f9f9f9; padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary-color);">
+                    <p style="font-style: italic; margin-bottom: 1.5rem; color: #555;">"${r.text}"</p>
+                    <div style="font-weight: bold; color: var(--primary-color);">- ${r.author}</div>
+                </div>
+            `).join('');
+        })();
+
+        window.submitQuote = function() {
+            const btn = document.querySelector('#quote-form button');
+            
+            // Show Loading
+            document.getElementById('loading-modal').style.display = 'flex';
+            
+            setTimeout(() => {
+                document.getElementById('loading-modal').style.display = 'none';
+                document.getElementById('result-modal').style.display = 'flex';
+                document.getElementById('quote-form').reset();
+            }, 2000);
+        };
+    </script>
+</body>
+</html>

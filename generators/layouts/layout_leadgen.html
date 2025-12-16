@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Gen Funnel</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #17a2b8;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --light-bg: #f4f7f6;
+            --font-heading: 'Helvetica Neue', sans-serif;
+            --font-body: 'Arial', sans-serif;
+            --btn-radius: 5px;
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        body { font-family: var(--font-body); margin: 0; padding: 0; color: var(--text-color); background: var(--bg-color); padding-bottom: 80px; }
+        h1, h2, h3 { font-family: var(--font-heading); }
+        .btn-primary {
+            background-color: var(--primary-color); color: white; padding: 1rem 2rem;
+            font-size: 1.1rem; border: none; border-radius: var(--btn-radius); cursor: pointer; font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: var(--box-shadow);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .form-control { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: var(--btn-radius); box-sizing: border-box; }
+        
+        /* Utilities */
+        .hidden { display: none !important; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+    </style>
+    <script>
+        // 0. GLOBAL FUNNEL CONFIGURATION (Placeholder - Injected by Python)
+        window.FUNNEL_DATA = {}; 
+        window.FUNNEL_STATE = {};
+
+        // Apply Theme
+        (function() {
+            const theme = window.FUNNEL_DATA.theme;
+            if (!theme) return;
+            
+            const root = document.documentElement;
+            root.style.setProperty('--primary-color', theme.primary);
+            root.style.setProperty('--secondary-color', theme.secondary);
+            root.style.setProperty('--bg-color', theme.bg);
+            root.style.setProperty('--text-color', theme.text);
+            root.style.setProperty('--light-bg', theme.light_bg);
+            root.style.setProperty('--font-heading', theme.font_heading);
+            root.style.setProperty('--font-body', theme.font_body);
+            root.style.setProperty('--btn-radius', theme.radius || '5px');
+            root.style.setProperty('--box-shadow', theme.shadow || '0 10px 30px rgba(0,0,0,0.1)');
+
+            if (theme.google_fonts) {
+                const link = document.createElement('link');
+                link.href = `https://fonts.googleapis.com/css2?family=${theme.google_fonts}&display=swap`;
+                link.rel = 'stylesheet';
+                document.head.appendChild(link);
+            }
+        })();
+
+        // 1. Mock Tracking
+        window.fbq = function(action, eventName, params) {
+            console.log(`%c[FB PIXEL] ${action}: ${eventName}`, 'color: #1877f2; font-weight: bold;', params || '');
+        };
+        window.gtag = function(action, eventName, params) {
+            console.log(`%c[GA4] ${action}: ${eventName}`, 'color: #f4b400; font-weight: bold;', params || '');
+        };
+        
+        // Init Tracking
+        window.fbq('init', '1234567890');
+        window.fbq('track', 'PageView');
+    </script>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section style="background: var(--light-bg); padding: 4rem 0;">
+        <div class="container" style="display: flex; flex-wrap: wrap; align-items: center;">
+            <div style="flex: 1; min-width: 300px; padding-right: 2rem;">
+                <h1 id="hero-headline" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;"></h1>
+                <p id="hero-subheadline" style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;"></p>
+                <ul id="hero-bullets" style="list-style: none; padding: 0; margin-bottom: 2rem;"></ul>
+            </div>
+            <div style="flex: 1; min-width: 300px; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Get Your Free Consultation</h3>
+                <form id="lead-form" onsubmit="event.preventDefault(); window.submitLead();">
+                    <input type="text" id="input-name" class="form-control" placeholder="Full Name" required>
+                    <input type="email" id="input-email" class="form-control" placeholder="Email Address" required>
+                    <input type="tel" id="input-phone" class="form-control" placeholder="Phone Number" required>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Request Now</button>
+                </form>
+                <p style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 1rem;">🔒 Your information is secure.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section style="padding: 4rem 0;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Why Choose Us?</h2>
+            <div id="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section style="padding: 4rem 0; background: #fff;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">What Our Clients Say</h2>
+            <div id="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section style="padding: 4rem 0; background: var(--light-bg);">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+            <div id="faq-container">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background: #333; color: white; padding: 3rem 0; text-align: center;">
+        <div class="container">
+            <p>© 2025 All Rights Reserved.</p>
+            <div style="margin-top: 1rem;">
+                <a href="#" style="color: #ccc; text-decoration: none; margin: 0 10px;">Privacy Policy</a>
+                <a href="#" style="color: #ccc; text-decoration: none; margin: 0 10px;">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- STICKY MOBILE BAR -->
+    <div class='sticky-mobile' style='position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); display: none; justify-content: space-between; align-items: center; z-index: 999; border-top: 1px solid #eee;'>
+        <div style="display: flex; flex-direction: column;">
+            <span style='font-weight: bold; color: var(--primary-color);'>Limited Availability</span>
+            <span style="font-size: 0.8rem;">Book before spots fill up</span>
+        </div>
+        <button class='btn-primary' style='padding: 10px 20px; font-size: 1rem;' onclick="document.querySelector('#lead-form').scrollIntoView({behavior: 'smooth'})">Book Now</button>
+    </div>
+
+    <!-- EXIT INTENT POPUP -->
+    <div id='exit-popup' style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; align-items: center; justify-content: center;'>
+        <div style='background: white; padding: 3rem; border-radius: 10px; text-align: center; max-width: 500px; position: relative; margin: 20px;'>
+            <button onclick="document.getElementById('exit-popup').style.display='none'" style='position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer;'>&times;</button>
+            <h2 style='color: var(--primary-color); margin-bottom: 1rem;' id="exit-headline">Wait! Don't Leave Empty Handed</h2>
+            <p style='margin-bottom: 2rem;' id="exit-subheadline">Get our free checklist before you go.</p>
+            <button class='btn-primary' style='width: 100%; padding: 1.5rem; font-size: 1.2rem;' onclick="document.getElementById('exit-popup').style.display='none'; document.querySelector('#lead-form').scrollIntoView({behavior: 'smooth'});">Get It Now</button>
+        </div>
+    </div>
+
+    <!-- THANK YOU MODAL -->
+    <div id='thank-you-modal' style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; align-items: center; justify-content: center;'>
+        <div style='background: white; padding: 3rem; border-radius: 10px; text-align: center; max-width: 500px; margin: 20px;'>
+            <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+            <h2 style='margin-bottom: 1rem;'>Request Received!</h2>
+            <p style='margin-bottom: 2rem; color: #666;'>We will contact you shortly to confirm your appointment.</p>
+            <button class='btn-primary' onclick="document.getElementById('thank-you-modal').style.display='none'">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Content
+        (function init() {
+            if (!window.FUNNEL_DATA.hero) return;
+            
+            // Hero
+            document.getElementById('hero-headline').innerText = window.FUNNEL_DATA.hero.headline;
+            document.getElementById('hero-subheadline').innerText = window.FUNNEL_DATA.hero.subheadline;
+            const bullets = window.FUNNEL_DATA.hero.bullets || [];
+            document.getElementById('hero-bullets').innerHTML = bullets.map(b => `<li style="margin-bottom: 10px;">✅ ${b}</li>`).join('');
+
+            // Features
+            const features = window.FUNNEL_DATA.features || [];
+            document.getElementById('features-grid').innerHTML = features.map(f => `
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">${f.icon}</div>
+                    <h3 style="margin-bottom: 0.5rem;">${f.title}</h3>
+                    <p style="color: #666;">${f.desc}</p>
+                </div>
+            `).join('');
+
+            // Reviews (New)
+            const reviews = window.FUNNEL_DATA.reviews || [];
+            document.getElementById('reviews-grid').innerHTML = reviews.map(r => `
+                <div style="background: #f9f9f9; padding: 2rem; border-radius: 10px;">
+                    <div style="color: #ffc107; margin-bottom: 1rem;">★★★★★</div>
+                    <p style="font-style: italic; margin-bottom: 1.5rem;">"${r.text}"</p>
+                    <div style="font-weight: bold;">- ${r.author}</div>
+                </div>
+            `).join('');
+
+            // FAQ (New)
+            const faq = window.FUNNEL_DATA.faq || [];
+            document.getElementById('faq-container').innerHTML = faq.map(f => `
+                <details style="margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
+                    <summary style="font-weight: bold; cursor: pointer;">${f.q}</summary>
+                    <p style="margin-top: 0.5rem; color: #666;">${f.a}</p>
+                </details>
+            `).join('');
+
+            // Exit Intent Config
+            if (window.FUNNEL_DATA.exit_intent) {
+                document.getElementById('exit-headline').innerText = window.FUNNEL_DATA.exit_intent.headline;
+                document.getElementById('exit-subheadline').innerText = window.FUNNEL_DATA.exit_intent.subheadline;
+            }
+
+            // Show Sticky Bar on Mobile
+            if (window.innerWidth < 768) {
+                document.querySelector('.sticky-mobile').style.display = 'flex';
+            }
+        })();
+
+        // Exit Intent Logic
+        window.initExitIntent = function() {
+            let exitIntentShown = false;
+            document.addEventListener('mouseleave', (e) => {
+                if (e.clientY < 0 && !exitIntentShown) {
+                    document.getElementById('exit-popup').style.display = 'flex';
+                    exitIntentShown = true;
+                }
+            });
+        };
+        window.initExitIntent();
+
+        window.submitLead = function() {
+            const name = document.getElementById('input-name').value;
+            const email = document.getElementById('input-email').value;
+            
+            // Track Lead
+            window.fbq('track', 'Lead', { content_name: 'Consultation Request' });
+            window.gtag('event', 'generate_lead');
+
+            // Show Thank You
+            document.getElementById('thank-you-modal').style.display = 'flex';
+        };
+    </script>
+</body>
+</html>

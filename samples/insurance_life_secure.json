@@ -1,0 +1,65 @@
+{
+    "hero": {
+        "headline": "Protect Your Family's Future Today",
+        "subheadline": "Get RM500,000 coverage starting from just RM80/month. Medical card included.",
+        "cta_text": "Get Free Quote",
+        "media_type": "image",
+        "media_url": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80"
+    },
+    "form": {
+        "title": "Get Your Personalized Quote",
+        "fields": [
+            {
+                "type": "text",
+                "label": "Name"
+            },
+            {
+                "type": "number",
+                "label": "Age"
+            },
+            {
+                "type": "select",
+                "label": "Smoking Status",
+                "options": [
+                    "Non-Smoker",
+                    "Smoker"
+                ]
+            },
+            {
+                "type": "text",
+                "label": "Phone Number"
+            }
+        ],
+        "cta": "Calculate Premium"
+    },
+    "reviews": [
+        {
+            "author": "Razak M.",
+            "text": "Claim process was fast and easy when I was hospitalized."
+        },
+        {
+            "author": "Tan S.Y.",
+            "text": "Agent explained everything clearly. No hidden clauses."
+        }
+    ],
+    "faq": [
+        {
+            "q": "Is there a waiting period?",
+            "a": "Yes, standard 30-day waiting period for medical claims."
+        },
+        {
+            "q": "Which hospitals are covered?",
+            "a": "We cover over 150 panel hospitals across Malaysia."
+        }
+    ],
+    "theme": {
+        "primary": "#2e7d32",
+        "bg": "#ffffff",
+        "text": "#2c3e50",
+        "light_bg": "#e8f5e9",
+        "font_heading": "Merriweather, serif",
+        "font_body": "Lato, sans-serif",
+        "google_fonts": "Merriweather:700|Lato:400",
+        "radius": "6px"
+    }
+}

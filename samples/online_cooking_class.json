@@ -1,0 +1,70 @@
+{
+    "hero": {
+        "headline": "Cook Authentic Nyonya Food at Home",
+        "subheadline": "Video masterclass by Chef Melba. Learn to make Laksa, Kuih, and Pongteh.",
+        "cta_text": "Start Learning",
+        "media_type": "video",
+        "media_url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    },
+    "variants": [
+        {
+            "id": "basic",
+            "label": "Basic Course (5 Recipes)",
+            "price": 69.0
+        },
+        {
+            "id": "master",
+            "label": "Masterclass (20 Recipes + Ebook)",
+            "price": 129.0
+        }
+    ],
+    "products": {
+        "bump": {
+            "id": "spice_kit",
+            "label": "Add Starter Spice Kit (Shipped)",
+            "price": 35.0
+        },
+        "upsell": {
+            "id": "live_session",
+            "label": "Live Zoom Q&A Session?",
+            "price": 50.0
+        }
+    },
+    "upsell_page": {
+        "headline": "Cook With Chef Melba Live!",
+        "subheadline": "Join our monthly Zoom session to ask questions and cook along.",
+        "image_url": "https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&w=400&q=80",
+        "cta_yes": "Yes, Add Live Session",
+        "cta_no": "No thanks"
+    },
+    "reviews": [
+        {
+            "author": "Sarah J.",
+            "text": "My mother-in-law praised my Laksa! Thank you Chef."
+        },
+        {
+            "author": "Faridah",
+            "text": "Videos are very clear and easy to follow."
+        }
+    ],
+    "faq": [
+        {
+            "q": "Do I get lifetime access?",
+            "a": "Yes, pay once and watch forever."
+        },
+        {
+            "q": "Are ingredients hard to find?",
+            "a": "Most can be found at local wet markets or supermarkets."
+        }
+    ],
+    "theme": {
+        "primary": "#d84315",
+        "bg": "#fff3e0",
+        "text": "#4e342e",
+        "light_bg": "#ffffff",
+        "font_heading": "Playfair Display, serif",
+        "font_body": "Lato, sans-serif",
+        "google_fonts": "Playfair+Display:700|Lato:400",
+        "radius": "10px"
+    }
+}

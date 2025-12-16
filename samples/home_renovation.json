@@ -1,0 +1,68 @@
+{
+    "hero": {
+        "headline": "Transform Your Home into a Masterpiece",
+        "subheadline": "Interior design and renovation services for condos and landed properties.",
+        "cta_text": "Get Free Quotation",
+        "media_type": "image",
+        "media_url": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"
+    },
+    "form": {
+        "title": "Request a Quote",
+        "fields": [
+            {
+                "type": "select",
+                "label": "Property Type",
+                "options": [
+                    "Condominium",
+                    "Terrace",
+                    "Semi-D/Bungalow"
+                ]
+            },
+            {
+                "type": "select",
+                "label": "Area to Renovate",
+                "options": [
+                    "Kitchen",
+                    "Living Room",
+                    "Full House",
+                    "Bedroom"
+                ]
+            },
+            {
+                "type": "text",
+                "label": "Budget Estimate"
+            }
+        ],
+        "cta": "Submit Request"
+    },
+    "reviews": [
+        {
+            "author": "Puan Zaiton",
+            "text": "They finished my kitchen cabinet on time and within budget."
+        },
+        {
+            "author": "Gary L.",
+            "text": "Workmanship is excellent. Highly recommended."
+        }
+    ],
+    "faq": [
+        {
+            "q": "Do you provide 3D drawings?",
+            "a": "Yes, we provide 3D visualization before starting work."
+        },
+        {
+            "q": "Is there a warranty?",
+            "a": "We provide 12 months warranty on workmanship."
+        }
+    ],
+    "theme": {
+        "primary": "#5d4037",
+        "bg": "#efebe9",
+        "text": "#3e2723",
+        "light_bg": "#ffffff",
+        "font_heading": "Playfair Display, serif",
+        "font_body": "Open Sans, sans-serif",
+        "google_fonts": "Playfair+Display:700|Open+Sans:400",
+        "radius": "0px"
+    }
+}

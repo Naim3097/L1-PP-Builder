@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSL Presentation</title>
+    <style>
+        :root {
+            --primary-color: #cc0000;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --white: #ffffff;
+            --btn-radius: 5px;
+            --box-shadow: 0 0 30px rgba(0,0,0,0.05);
+            --font-heading: 'Helvetica Neue', sans-serif;
+            --font-body: 'Arial', sans-serif;
+        }
+        body { font-family: var(--font-body); background: var(--bg-color); margin: 0; padding: 0; color: var(--text-color); padding-bottom: 80px; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--white); box-shadow: var(--box-shadow); min-height: 100vh; }
+        
+        /* Typography */
+        h1 { font-family: var(--font-heading); font-size: 2.2rem; color: var(--text-color); margin: 0 0 1rem 0; line-height: 1.2; text-align: center; padding: 2rem 1rem 0 1rem; }
+        .subheadline { font-size: 1.2rem; color: var(--text-color); opacity: 0.8; margin-bottom: 2rem; text-align: center; padding: 0 1rem; }
+        
+        /* Video */
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; margin-bottom: 2rem; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
+        /* CTA Section */
+        .cta-section { text-align: center; padding: 2rem; display: none; /* Hidden by default */ animation: fadeIn 1s; }
+        .cta-button { 
+            background: var(--primary-color); color: white; padding: 1.5rem 3rem; font-size: 1.5rem; 
+            text-decoration: none; font-weight: bold; border-radius: var(--btn-radius); 
+            display: inline-block; transition: transform 0.1s, box-shadow 0.2s;
+            box-shadow: var(--box-shadow);
+            border: none;
+        }
+        .cta-button:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.2); filter: brightness(1.1); }
+        .guarantee-text { margin-top: 1rem; font-size: 0.9rem; color: #666; }
+
+        /* Content */
+        .content-block { padding: 2rem; max-width: 700px; margin: 0 auto; }
+        .bullet-list { list-style: none; padding: 0; }
+        .bullet-list li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+        .bullet-list li::before { content: "✓"; color: var(--primary-color); font-weight: bold; position: absolute; left: 0; }
+
+        /* Reviews */
+        .review-card { background: rgba(0,0,0,0.03); padding: 1.5rem; margin-bottom: 1rem; border-radius: var(--btn-radius); border-left: 4px solid var(--primary-color); }
+
+        /* Utilities */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .hidden { display: none !important; }
+    </style>
+    <script>
+        // 0. GLOBAL CONFIG
+        window.FUNNEL_DATA = {
+            "hero": {
+                "headline": "How I Gained 100k Malaysian Followers in 30 Days",
+                "subheadline": "The exact 'Rojak Content Strategy' used by top local influencers to go viral on TikTok Shop without dancing.",
+                "cta_text": "Download the Playbook",
+                "subtext": "Instant PDF Download • 100% Satisfaction Guarantee",
+                "media_type": "image",
+                "media_url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
+                "bullets": [
+                    "The '3-Second Hook' formula for Malaysian audiences",
+                    "List of trending audio & hashtags in KL/Selangor",
+                    "How to setup TikTok Shop for maximum conversion",
+                    "Case studies: From 0 to RM10k sales in 1 week"
+                ]
+            },
+            "settings": {
+                "delay_seconds": 0
+            },
+            "variants": [
+                {
+                    "id": "ebook",
+                    "label": "Ebook Only (PDF)",
+                    "price": 39.0
+                },
+                {
+                    "id": "bundle",
+                    "label": "Ebook + Video Masterclass",
+                    "price": 89.0
+                }
+            ],
+            "products": {
+                "main": {
+                     "id": "ebook",
+                     "label": "Ebook Only",
+                     "price": 39.0
+                },
+                "bump": {
+                    "id": "hooks",
+                    "label": "Add 50 Viral Hook Templates (BM & English)",
+                    "price": 15.0
+                },
+                "upsell": {
+                    "id": "audit",
+                    "label": "1-on-1 Account Audit (30 Mins)",
+                    "price": 199.0
+                }
+            },
+            "upsell_page": {
+                "headline": "Wait! Want Me To Audit Your Account?",
+                "subheadline": "I will personally review your TikTok profile and give you a custom 30-day content plan.",
+                "image_url": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80",
+                "cta_yes": "Yes, Book Audit Call (RM 199)",
+                "cta_no": "No thanks, I'll figure it out myself",
+                "original_price": 499.0
+            },
+            "reviews": [
+                {
+                    "author": "Khairul Aming (Fan)",
+                    "text": "This guide helped me understand the algorithm better. My views went up 300%!"
+                },
+                {
+                    "author": "Mei Ling",
+                    "text": "The templates are a lifesaver. I don't have to think about what to post anymore."
+                },
+                {
+                    "author": "Raju G.",
+                    "text": "Worth every sen. The section on TikTok Shop affiliate is gold."
+                }
+            ],
+            "faq": [
+                {
+                    "q": "Is this suitable for beginners?",
+                    "a": "Yes! We start from setting up your account correctly."
+                },
+                {
+                    "q": "Is the content in BM or English?",
+                    "a": "The guide is in English, but the strategies work for both BM and English content."
+                },
+                {
+                    "q": "How do I receive the product?",
+                    "a": "You will receive an email with the download link immediately after payment."
+                }
+            ],
+            "cta": {
+                "text": "Get The Viral Playbook",
+                "subtext": "30-Day Money Back Guarantee"
+            },
+            "theme": {
+                "primary": "#00f2ea",
+                "secondary": "#ff0050",
+                "bg": "#000000",
+                "text": "#ffffff",
+                "light_bg": "#121212",
+                "font_heading": "Montserrat, sans-serif",
+                "font_body": "Inter, sans-serif",
+                "google_fonts": "Montserrat:700,900|Inter:400",
+                "radius": "0px",
+                "shadow": "0 0 20px rgba(0, 242, 234, 0.3)"
+            }
+        };
+        
+        // Apply Theme
+        (function() {
+            const theme = window.FUNNEL_DATA.theme;
+            if (!theme) return;
+            
+            const root = document.documentElement;
+            root.style.setProperty('--primary-color', theme.primary);
+            root.style.setProperty('--secondary-color', theme.secondary);
+            root.style.setProperty('--bg-color', theme.bg);
+            root.style.setProperty('--text-color', theme.text);
+            root.style.setProperty('--white', theme.light_bg || '#ffffff'); // VSL uses 'white' var
+            root.style.setProperty('--font-heading', theme.font_heading);
+            root.style.setProperty('--font-body', theme.font_body);
+            root.style.setProperty('--btn-radius', theme.radius || '5px');
+            root.style.setProperty('--box-shadow', theme.shadow || '0 0 30px rgba(0,0,0,0.05)');
+
+            if (theme.google_fonts) {
+                const link = document.createElement('link');
+                link.href = `https://fonts.googleapis.com/css2?family=${theme.google_fonts}&display=swap`;
+                link.rel = 'stylesheet';
+                document.head.appendChild(link);
+            }
+        })();
+
+        // 1. Mock Tracking
+        window.fbq = function(a,e,p) { console.log(`%c[FB] ${a}: ${e}`, 'color: blue', p||''); };
+        window.gtag = function(a,e,p) { console.log(`%c[GA] ${a}: ${e}`, 'color: orange', p||''); };
+        window.fbq('init', 'VSL_PIXEL');
+        window.fbq('track', 'PageView');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div style="background: #333; color: white; padding: 10px; text-align: center; font-size: 0.9rem;">
+            ⚠️ Presentation may be removed shortly. Watch until the end.
+        </div>
+
+        <h1 id="vsl-headline"></h1>
+        <p class="subheadline" id="vsl-subheadline"></p>
+        
+        <div class="video-wrapper">
+            <iframe id="vsl-video" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <!-- DYNAMIC CTA SECTION -->
+        <div id="cta-container" class="cta-section">
+            <a href="#" class="cta-button" id="main-cta" onclick="window.openCheckout()">YES! I Want Access Now</a>
+            <p id="cta-guarantee" class="guarantee-text"></p>
+            
+            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 10px;">
+                <span>🔒 Secure Checkout</span>
+                <span>📅 30-Day Guarantee</span>
+                <span>⚡ Instant Access</span>
+            </div>
+        </div>
+
+        <!-- TEXT CONTENT -->
+        <div class="content-block">
+            <h3>What You'll Discover In This Video:</h3>
+            <ul id="bullets-list" class="bullet-list"></ul>
+        </div>
+
+        <!-- SOCIAL PROOF (Hidden initially, reveals with CTA) -->
+        <div id="social-proof-section" class="content-block" style="display: none;">
+            <h3 style="text-align: center; margin-bottom: 2rem;">Real Results</h3>
+            <div id="reviews-grid"></div>
+        </div>
+
+        <!-- FAQ (Hidden initially, reveals with CTA) -->
+        <div id="faq-section" class="content-block" style="display: none;">
+            <h3 style="text-align: center;">Common Questions</h3>
+            <div id="faq-grid"></div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer style="text-align: center; padding: 2rem; color: #999; font-size: 0.8rem; border-top: 1px solid #eee;">
+            <p>Copyright © 2025. All Rights Reserved.</p>
+            <p>This site is not a part of the Facebook website or Facebook Inc.</p>
+        </footer>
+    </div>
+
+    <!-- STICKY MOBILE BAR (Reveals with CTA) -->
+    <div id="sticky-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); display: none; justify-content: center; z-index: 999; border-top: 1px solid #eee;">
+        <button class="cta-button" style="padding: 0.8rem 2rem; font-size: 1.1rem; width: 90%;" onclick="window.openCheckout()">Get Started Now</button>
+    </div>
+
+    <!-- CHECKOUT MODAL (New Ecosystem Feature) -->
+    <div id="checkout-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 3000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 2rem; border-radius: var(--btn-radius); width: 90%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="document.getElementById('checkout-modal').style.display='none'" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            
+            <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">Secure Checkout via Lean X</h2>
+            
+            <div id="checkout-error" style="display: none; background: #ffebee; color: #c62828; padding: 10px; border-radius: 5px; margin-bottom: 15px; border: 1px solid #ef9a9a; font-size: 0.9rem;">
+                ⚠️ Payment Declined: Please check your card details.
+            </div>
+
+            <div style="background: #f9f9f9; padding: 1rem; border-radius: 5px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; font-weight: bold;">
+                <span>Total Today:</span>
+                <span id="checkout-total">Calculating...</span>
+            </div>
+
+            <form id="checkout-form" onsubmit="event.preventDefault(); window.handleMainPurchase();">
+                <input type="email" id="email-input" placeholder="Email Address" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+                <input type="text" id="card-input" placeholder="Card Number" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" placeholder="MM/YY" required style="flex: 1; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+                    <input type="text" placeholder="CVC" required style="flex: 1; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+                </div>
+                
+                <!-- ORDER BUMP -->
+                <div id="order-bump-container" style="background: #e8f0fe; border: 2px dashed #4285f4; padding: 15px; margin-bottom: 15px; border-radius: 5px; display: flex; align-items: start;">
+                    <input type="checkbox" id="order-bump-check" style="margin-top: 5px; margin-right: 10px; transform: scale(1.5);" onchange="window.toggleBump(this)">
+                    <div>
+                        <label for="order-bump-check" style="font-weight: bold; color: #333; cursor: pointer;">Yes! Add Priority Processing</label>
+                        <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">Get <span id="bump-offer-name">Priority Processing</span> for just <span style="color: #d93025; font-weight: bold;" id="bump-price">$4.99</span>.</p>
+                    </div>
+                </div>
+
+                <button type="submit" id="pay-button" class="cta-button" style="width: 100%; font-size: 1.2rem; padding: 1rem;">Complete Order</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem; color: #888;">🔒 256-Bit SSL Secure Payment<br>Powered by Lean X Payment Gateway</p>
+        </div>
+    </div>
+
+    <!-- UPSELL PAGE (OTO) -->
+    <div id="upsell-page" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3100; overflow-y: auto; flex-direction: column; align-items: center; justify-content: center;">
+        <div style="width: 100%; background: #e63946; color: white; padding: 15px; text-align: center; font-weight: bold; font-size: 1.2rem;">
+            ⚠️ WAIT! Your Order Is Not Complete...
+        </div>
+        <div id="upsell-content" style="max-width: 800px; margin: 0 auto; padding: 3rem 2rem; text-align: center;">
+            <!-- Rendered by JS -->
+        </div>
+    </div>
+
+    <!-- THANK YOU MODAL -->
+    <div id="thank-you-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3200; align-items: center; justify-content: center; text-align: center;">
+        <div style="max-width: 600px; padding: 2rem;">
+            <div style="font-size: 5rem; margin-bottom: 1rem;">🎉</div>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">You're In!</h1>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Your access details have been sent to your email.</p>
+            
+            <div id="order-summary" style="background: #f9f9f9; padding: 1rem; border-radius: 5px; margin-bottom: 2rem; text-align: left;"></div>
+
+            <button class="cta-button" onclick="window.location.reload()">Back to Home</button>
+        </div>
+    </div>
+
+    <!-- EXIT INTENT POPUP -->
+    <div id='exit-popup' style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;'>
+        <div style='background: white; padding: 2rem; border-radius: 10px; text-align: center; max-width: 400px; margin: 20px; position: relative;'>
+            <button onclick="document.getElementById('exit-popup').style.display='none'" style='position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 1.5rem; cursor: pointer;'>&times;</button>
+            <h2 style='color: var(--primary-color);'>Wait! Before You Go...</h2>
+            <p>You can read the text version of this offer if you prefer.</p>
+            <button class='cta-button' style='font-size: 1rem; padding: 1rem;' onclick="alert('Redirecting to Text Sales Letter...');">Read Text Version</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize State
+        window.FUNNEL_STATE = {
+            selectedVariant: null,
+            lastOrder: null
+        };
+
+        (function init() {
+            if (!window.FUNNEL_DATA.hero) return;
+            
+            // Initialize State with Main Product
+            if (window.FUNNEL_DATA.products && window.FUNNEL_DATA.products.main) {
+                window.FUNNEL_STATE.selectedVariant = window.FUNNEL_DATA.products.main;
+            }
+
+            // 1. Populate Content
+            document.getElementById('vsl-headline').innerText = window.FUNNEL_DATA.hero.headline;
+            document.getElementById('vsl-subheadline').innerText = window.FUNNEL_DATA.hero.subheadline;
+            document.getElementById('vsl-video').src = window.FUNNEL_DATA.hero.media_url;
+            
+            const btn = document.getElementById('main-cta');
+            btn.innerText = window.FUNNEL_DATA.cta.text;
+            document.getElementById('cta-guarantee').innerText = window.FUNNEL_DATA.cta.subtext;
+
+            const bullets = window.FUNNEL_DATA.hero.bullets || [];
+            document.getElementById('bullets-list').innerHTML = bullets.map(b => `<li>${b}</li>`).join('');
+
+            // Reviews
+            const reviews = window.FUNNEL_DATA.reviews || [];
+            document.getElementById('reviews-grid').innerHTML = reviews.map(r => `
+                <div class="review-card">
+                    <strong>${r.author}</strong>
+                    <p>"${r.text}"</p>
+                </div>
+            `).join('');
+
+            // FAQ
+            const faq = window.FUNNEL_DATA.faq || [];
+            document.getElementById('faq-grid').innerHTML = faq.map(f => `
+                <details style="margin-bottom: 10px; cursor: pointer;">
+                    <summary style="font-weight: bold;">${f.q}</summary>
+                    <p style="margin-top: 5px; color: #555;">${f.a}</p>
+                </details>
+            `).join('');
+
+            // 2. Handle Timed Reveal
+            const delay = (window.FUNNEL_DATA.settings.delay_seconds || 0) * 1000;
+            console.log(`[VSL] Content hidden for ${delay/1000} seconds`);
+
+            setTimeout(() => {
+                document.getElementById('cta-container').style.display = 'block';
+                document.getElementById('social-proof-section').style.display = 'block';
+                document.getElementById('faq-section').style.display = 'block';
+                
+                // Only show sticky bar on mobile
+                if (window.innerWidth < 768) {
+                    document.getElementById('sticky-bar').style.display = 'flex';
+                }
+
+                // Enable Exit Intent only AFTER the pitch is made
+                window.initExitIntent();
+                
+            }, delay);
+        })();
+
+        // --- CHECKOUT LOGIC ---
+
+        window.openCheckout = function() {
+            // Reset Bump
+            document.getElementById('order-bump-check').checked = false;
+            
+            // Setup Bump UI
+            if (window.FUNNEL_DATA.products && window.FUNNEL_DATA.products.bump) {
+                const bump = window.FUNNEL_DATA.products.bump;
+                document.getElementById('bump-price').innerText = 'RM ' + bump.price.toFixed(2);
+                // Try to infer a name or use default
+                document.getElementById('bump-offer-name').innerText = "Priority Processing"; 
+            } else {
+                document.getElementById('order-bump-container').style.display = 'none';
+            }
+
+            window.updateCheckoutTotal();
+            document.getElementById('checkout-modal').style.display = 'flex';
+            window.fbq('track', 'InitiateCheckout');
+        };
+
+        window.updateCheckoutTotal = function() {
+            const totalEl = document.getElementById('checkout-total');
+            if (!totalEl) return;
+
+            let total = 0;
+            if (window.FUNNEL_STATE.selectedVariant) {
+                total += window.FUNNEL_STATE.selectedVariant.price;
+            }
+
+            const bumpCheckbox = document.getElementById('order-bump-check');
+            if (bumpCheckbox && bumpCheckbox.checked && window.FUNNEL_DATA.products.bump) {
+                total += window.FUNNEL_DATA.products.bump.price;
+            }
+            
+            totalEl.innerText = 'RM ' + total.toFixed(2);
+        };
+
+        window.toggleBump = function(checkbox) {
+            window.updateCheckoutTotal();
+        };
+
+        window.handleMainPurchase = function() {
+            const payBtn = document.getElementById('pay-button');
+            const originalText = payBtn.innerText;
+            
+            payBtn.innerText = "Processing...";
+            payBtn.disabled = true;
+
+            setTimeout(() => {
+                // Calculate Final Order
+                let total = window.FUNNEL_STATE.selectedVariant.price;
+                const items = [window.FUNNEL_STATE.selectedVariant];
+                
+                const bumpCheckbox = document.getElementById('order-bump-check');
+                if (bumpCheckbox && bumpCheckbox.checked && window.FUNNEL_DATA.products.bump) {
+                    total += window.FUNNEL_DATA.products.bump.price;
+                    items.push(window.FUNNEL_DATA.products.bump);
+                }
+
+                window.FUNNEL_STATE.lastOrder = { items: items, total: total };
+                window.fbq('track', 'Purchase', { value: total, currency: 'USD' });
+
+                // Transition to Upsell
+                document.getElementById('checkout-modal').style.display = 'none';
+                
+                // Render Upsell
+                window.renderUpsell();
+                document.getElementById('upsell-page').style.display = 'flex';
+                
+                payBtn.innerText = originalText;
+                payBtn.disabled = false;
+            }, 1500);
+        };
+
+        window.renderUpsell = function() {
+            const config = window.FUNNEL_DATA.upsell_page;
+            const product = window.FUNNEL_DATA.products.upsell;
+            const container = document.getElementById('upsell-content');
+            
+            if (!config || !product) {
+                // Skip upsell if no data
+                window.renderThankYou();
+                document.getElementById('thank-you-modal').style.display = 'flex';
+                return;
+            }
+
+            container.innerHTML = `
+                <h1 style="color: #e63946; font-size: 2.5rem; margin-bottom: 1rem;">\${config.headline}</h1>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">\${config.subheadline}</p>
+                
+                <div style="border: 2px dashed #e63946; padding: 2rem; border-radius: 10px; background: #fff5f5;">
+                    <img src="\${config.image_url}" style="width: 200px; height: 200px; object-fit: cover; margin: 0 auto 1rem; border-radius: 10px; display: block;" alt="Upsell Product">
+                    <div style="font-size: 2rem; font-weight: bold; margin-bottom: 1rem;">
+                        <span style="text-decoration: line-through; color: #999; font-size: 1.5rem; margin-right: 10px;">RM \${config.original_price.toFixed(2)}</span> 
+                        RM \${product.price.toFixed(2)}
+                    </div>
+                    <button class="cta-button" style="width: 100%; max-width: 400px; padding: 1.5rem; font-size: 1.3rem; margin-bottom: 1rem;" onclick="window.handleUpsellPurchase()">\${config.cta_yes}</button>
+                    <br>
+                    <a href="#" style="color: #999; text-decoration: underline;" onclick="window.handleUpsellDecline(); return false;">\${config.cta_no}</a>
+                </div>
+            `;
+        };
+
+        window.handleUpsellPurchase = function() {
+            const product = window.FUNNEL_DATA.products.upsell;
+            if (window.FUNNEL_STATE.lastOrder) {
+                window.FUNNEL_STATE.lastOrder.items.push(product);
+                window.FUNNEL_STATE.lastOrder.total += product.price;
+            }
+            window.fbq('track', 'Purchase', { value: product.price, currency: 'USD' });
+            
+            document.getElementById('upsell-page').style.display = 'none';
+            window.renderThankYou();
+            document.getElementById('thank-you-modal').style.display = 'flex';
+        };
+
+        window.handleUpsellDecline = function() {
+            document.getElementById('upsell-page').style.display = 'none';
+            window.renderThankYou();
+            document.getElementById('thank-you-modal').style.display = 'flex';
+        };
+
+        window.renderThankYou = function() {
+            const order = window.FUNNEL_STATE.lastOrder;
+            if (!order) return;
+            
+            const summaryHtml = order.items.map(item => `
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 5px 0;">
+                    <span>Product ID: \${item.id}</span>
+                    <span>RM \${item.price.toFixed(2)}</span>
+                </div>
+            `).join('');
+            
+            document.getElementById('order-summary').innerHTML = `
+                <h3>Order Summary</h3>
+                \${summaryHtml}
+                <div style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 10px; border-top: 2px solid #ddd; padding-top: 10px;">
+                    <span>TOTAL PAID:</span>
+                    <span>RM \${order.total.toFixed(2)}</span>
+                </div>
+            `;
+        };
+
+        window.initExitIntent = function() {
+            let shown = false;
+            document.addEventListener('mouseleave', (e) => {
+                if (e.clientY < 0 && !shown) {
+                    document.getElementById('exit-popup').style.display = 'flex';
+                    shown = true;
+                }
+            });
+        };
+    </script>
+</body>
+</html>

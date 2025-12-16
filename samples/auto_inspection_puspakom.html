@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCar Inspect Pro - Puspakom Runner Service</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #17a2b8;
+            --bg-color: #f0f4f8;
+            --text-color: #333333;
+            --light-bg: #ffffff;
+            --font-heading: 'Roboto', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --btn-radius: 8px;
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        body { font-family: var(--font-body); margin: 0; padding: 0; color: var(--text-color); background: var(--bg-color); padding-bottom: 80px; }
+        h1, h2, h3 { font-family: var(--font-heading); }
+        .btn-primary {
+            background-color: var(--primary-color); color: white; padding: 1rem 2rem;
+            font-size: 1.1rem; border: none; border-radius: var(--btn-radius); cursor: pointer; font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: var(--box-shadow);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .form-control { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: var(--btn-radius); box-sizing: border-box; }
+        
+        /* Timeline Steps */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding: 40px 0; }
+        .timeline::after { content: ''; position: absolute; width: 6px; background-color: #ddd; top: 0; bottom: 0; left: 50%; margin-left: -3px; }
+        .step-card { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; box-sizing: border-box; }
+        .step-card::after { content: ''; position: absolute; width: 25px; height: 25px; right: -17px; background-color: white; border: 4px solid var(--primary-color); top: 15px; border-radius: 50%; z-index: 1; }
+        .left { left: 0; }
+        .right { left: 50%; }
+        .left::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; right: 30px; border: medium solid white; border-width: 10px 0 10px 10px; border-color: transparent transparent transparent white; }
+        .right::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; left: 30px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent white transparent transparent; }
+        .right::after { left: -16px; }
+        .content { padding: 20px 30px; background-color: white; position: relative; border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after { left: 31px; }
+            .step-card { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .step-card::before { left: 60px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent white transparent transparent; }
+            .left::after, .right::after { left: 15px; }
+            .right { left: 0%; }
+        }
+
+        /* Utilities */
+        .hidden { display: none !important; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:700&family=Open+Sans:400,600&display=swap" rel="stylesheet">
+    <script>
+        window.FUNNEL_DATA = {
+            "hero": {
+                "headline": "Hassle-Free Puspakom Inspection Service",
+                "subheadline": "We pick up your car, handle the inspection, and return it to your doorstep. Save time and avoid the queue!",
+                "cta_text": "Book Inspection Now",
+                "media_type": "image",
+                "media_url": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=800&q=80"
+            },
+            "form": {
+                "title": "Schedule Your Inspection",
+                "fields": [
+                    {"type": "text", "label": "Car Model & Year", "placeholder": "e.g. Myvi 2018"},
+                    {"type": "select", "label": "Service Type", "options": ["B5 Transfer Ownership", "Road Tax Renewal", "E-Hailing Inspection"]},
+                    {"type": "date", "label": "Preferred Date"}
+                ],
+                "cta": "Get Quote & Book"
+            },
+            "reviews": [
+                {"author": "Ahmad Z.", "text": "Saved me 4 hours of waiting at Puspakom. Worth every ringgit!"},
+                {"author": "Sarah L.", "text": "Very professional runner. My car was returned safely."}
+            ],
+            "faq": [
+                {"q": "Is my car insured during the process?", "a": "Yes, our runners are covered by comprehensive liability insurance."},
+                {"q": "How long does it take?", "a": "Usually 3-4 hours depending on the queue at the center."}
+            ],
+            "theme": {
+                "primary": "#0056b3",
+                "bg": "#f0f4f8",
+                "text": "#333333",
+                "light_bg": "#ffffff",
+                "font_heading": "Roboto, sans-serif",
+                "font_body": "Open Sans, sans-serif",
+                "radius": "8px"
+            }
+        }; 
+        window.FUNNEL_STATE = {};
+    </script>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section style="background: var(--light-bg); padding: 4rem 0; border-bottom: 1px solid #eee;">
+        <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;">
+            <div style="flex: 1; min-width: 300px;">
+                <div style="background: #e3f2fd; color: var(--primary-color); display: inline-block; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; margin-bottom: 1rem;">Trusted by 5,000+ Car Owners</div>
+                <h1 id="hero-headline" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; line-height: 1.2;"></h1>
+                <p id="hero-subheadline" style="font-size: 1.2rem; color: #555; margin-bottom: 2rem; line-height: 1.6;"></p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 2rem;">
+                    <li style="margin-bottom: 10px; display: flex; align-items: center;"><span style="color: green; margin-right: 10px;">✔</span> Door-to-Door Pickup & Delivery</li>
+                    <li style="margin-bottom: 10px; display: flex; align-items: center;"><span style="color: green; margin-right: 10px;">✔</span> Guaranteed Pass or Free Retest</li>
+                    <li style="margin-bottom: 10px; display: flex; align-items: center;"><span style="color: green; margin-right: 10px;">✔</span> Fully Insured Runners</li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 300px; background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid #e1e1e1;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">Book Your Slot</h3>
+                <form id="lead-form" onsubmit="event.preventDefault(); window.submitLead();">
+                    <label style="font-weight: bold; display: block; margin-bottom: 5px;">Car Details</label>
+                    <input type="text" id="input-model" class="form-control" placeholder="e.g. Honda City 2019" required>
+                    
+                    <label style="font-weight: bold; display: block; margin-bottom: 5px;">Service Type</label>
+                    <select id="input-service" class="form-control">
+                        <option>B5 Transfer Ownership</option>
+                        <option>Road Tax Renewal</option>
+                        <option>E-Hailing Inspection</option>
+                    </select>
+
+                    <label style="font-weight: bold; display: block; margin-bottom: 5px;">Your Contact</label>
+                    <input type="tel" id="input-phone" class="form-control" placeholder="WhatsApp Number" required>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 1.2rem;">Get Instant Quote</button>
+                </form>
+                <p style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 1rem;">We usually reply within 15 minutes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS (TIMELINE) -->
+    <section style="padding: 4rem 0; background: #f8f9fa;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem;">How It Works</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 3rem;">Sit back and relax while we do the heavy lifting.</p>
+            
+            <div class="timeline">
+                <div class="step-card left">
+                    <div class="content">
+                        <h3>1. Book Online</h3>
+                        <p>Fill in the form above with your car details and preferred date.</p>
+                    </div>
+                </div>
+                <div class="step-card right">
+                    <div class="content">
+                        <h3>2. We Pick Up</h3>
+                        <p>Our runner arrives at your location to pick up the car and documents.</p>
+                    </div>
+                </div>
+                <div class="step-card left">
+                    <div class="content">
+                        <h3>3. Inspection Done</h3>
+                        <p>We queue up and handle the entire inspection process at Puspakom.</p>
+                    </div>
+                </div>
+                <div class="step-card right">
+                    <div class="content">
+                        <h3>4. Car Returned</h3>
+                        <p>We deliver your car back to you with the passed inspection report.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section style="padding: 4rem 0; background: #fff;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Happy Customers</h2>
+            <div id="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section style="padding: 4rem 0; background: var(--light-bg);">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Common Questions</h2>
+            <div id="faq-container">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- THANK YOU MODAL -->
+    <div id='thank-you-modal' style='display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; align-items: center; justify-content: center;'>
+        <div style='background: white; padding: 3rem; border-radius: 10px; text-align: center; max-width: 500px; margin: 20px;'>
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🚗</div>
+            <h2 style='margin-bottom: 1rem;'>Booking Received!</h2>
+            <p style='margin-bottom: 2rem; color: #666;'>Our runner will WhatsApp you shortly to confirm the pickup time.</p>
+            <button class='btn-primary' onclick="document.getElementById('thank-you-modal').style.display='none'">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Content
+        (function init() {
+            if (!window.FUNNEL_DATA.hero) return;
+            
+            // Hero
+            document.getElementById('hero-headline').innerText = window.FUNNEL_DATA.hero.headline;
+            document.getElementById('hero-subheadline').innerText = window.FUNNEL_DATA.hero.subheadline;
+
+            // Reviews
+            const reviews = window.FUNNEL_DATA.reviews || [];
+            document.getElementById('reviews-grid').innerHTML = reviews.map(r => `
+                <div style="background: #f9f9f9; padding: 2rem; border-radius: 10px; border: 1px solid #eee;">
+                    <div style="color: #ffc107; margin-bottom: 1rem;">★★★★★</div>
+                    <p style="font-style: italic; margin-bottom: 1.5rem; color: #555;">"${r.text}"</p>
+                    <div style="font-weight: bold; color: var(--primary-color);">- ${r.author}</div>
+                </div>
+            `).join('');
+
+            // FAQ
+            const faq = window.FUNNEL_DATA.faq || [];
+            document.getElementById('faq-container').innerHTML = faq.map(f => `
+                <details style="margin-bottom: 1rem; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <summary style="font-weight: bold; cursor: pointer; color: var(--primary-color);">${f.q}</summary>
+                    <p style="margin-top: 1rem; color: #666; line-height: 1.6;">${f.a}</p>
+                </details>
+            `).join('');
+        })();
+
+        window.submitLead = function() {
+            const btn = document.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Sending...";
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                document.getElementById('thank-you-modal').style.display = 'flex';
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
+            window.gtag('event', 'generate_lead');
+
+            // Show Thank You
+            document.getElementById('thank-you-modal').style.display = 'flex';
+        };
+    </script>
+</body>
+</html>

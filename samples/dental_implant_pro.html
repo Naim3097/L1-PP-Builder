@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmileCraft Dental - Premium Implants</title>
+    <style>
+        :root {
+            --primary-color: #00bfa5;
+            --secondary-color: #00897b;
+            --bg-color: #f0fffc;
+            --text-color: #444;
+            --white: #ffffff;
+            --btn-radius: 50px;
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+        body { font-family: var(--font-body); margin: 0; padding: 0; color: var(--text-color); background: var(--bg-color); padding-bottom: 80px; }
+        h1, h2, h3 { font-family: var(--font-heading); color: #2c3e50; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        .btn-primary {
+            background-color: var(--primary-color); color: white; padding: 1rem 2.5rem;
+            font-size: 1.1rem; border: none; border-radius: var(--btn-radius); cursor: pointer; font-weight: 600;
+            transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,191,165,0.3);
+        }
+        .btn-primary:hover { background-color: var(--secondary-color); transform: translateY(-2px); }
+        
+        .form-control { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #e0e0e0; border-radius: 8px; box-sizing: border-box; background: #f9f9f9; }
+        .form-control:focus { border-color: var(--primary-color); outline: none; background: white; }
+
+        /* Before After */
+        .ba-card { background: white; padding: 1rem; border-radius: 15px; box-shadow: var(--box-shadow); text-align: center; }
+        .ba-card img { width: 100%; border-radius: 10px; margin-bottom: 1rem; }
+
+        /* Sticky Mobile */
+        .sticky-mobile {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; 
+            display: none; justify-content: space-between; align-items: center; z-index: 999; 
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05); border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-mobile { display: flex; }
+            body { padding-bottom: 80px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        window.FUNNEL_DATA = {
+            "hero": {
+                "headline": "Regain Your Confidence with Permanent Dental Implants",
+                "subheadline": "Painless procedure. Natural look. Lifetime warranty. Book your free 3D Scan consultation today.",
+                "bullets": [
+                    "0% Interest Installment Plan Available",
+                    "MDA Certified Specialists",
+                    "Painless Technology"
+                ]
+            },
+            "features": [
+                { "title": "Natural Look", "icon": "🦷", "desc": "Custom-made crowns that match your natural teeth perfectly." },
+                { "title": "Lifetime Warranty", "icon": "🛡️", "desc": "We stand by our quality with a lifetime guarantee on implants." },
+                { "title": "Painless", "icon": "✨", "desc": "Advanced sedation options for a comfortable, anxiety-free experience." }
+            ],
+            "reviews": [
+                { "author": "Jessica Tan", "text": "I can finally eat apples again! The procedure was much easier than I expected." },
+                { "author": "Mr. Kumar", "text": "Dr. Lim is very gentle. The clinic is clean and modern. Highly recommended." }
+            ],
+            "faq": [
+                { "q": "Is the procedure painful?", "a": "Most patients report little to no discomfort thanks to our local anesthesia and sedation options." },
+                { "q": "How long does it take?", "a": "The implant placement takes about 1 hour. The full healing process varies from 3-6 months." }
+            ]
+        };
+    </script>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section style="background: white; padding: 6rem 0; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -50px; right: -50px; width: 300px; height: 300px; background: var(--bg-color); border-radius: 50%; z-index: 0;"></div>
+        <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4rem; position: relative; z-index: 1;">
+            <div style="flex: 1; min-width: 300px;">
+                <div style="color: var(--primary-color); font-weight: bold; margin-bottom: 1rem; letter-spacing: 1px;">SMILECRAFT DENTAL KL</div>
+                <h1 id="hero-headline" style="font-size: 3rem; margin-bottom: 1.5rem; line-height: 1.2;"></h1>
+                <p id="hero-subheadline" style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;"></p>
+                <ul id="hero-bullets" style="list-style: none; padding: 0; margin-bottom: 2rem; color: #555;"></ul>
+                <div style="display: flex; gap: 1rem;">
+                    <img src="https://via.placeholder.com/100x50?text=MDA+Cert" alt="MDA Certified" style="opacity: 0.7;">
+                    <img src="https://via.placeholder.com/100x50?text=5+Star" alt="5 Star Review" style="opacity: 0.7;">
+                </div>
+            </div>
+            <div style="flex: 1; min-width: 300px; max-width: 450px; background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                <h3 style="text-align: center; margin-bottom: 0.5rem; color: var(--primary-color);">Free Implant Consultation</h3>
+                <p style="text-align: center; color: #888; margin-bottom: 1.5rem; font-size: 0.9rem;">Includes 3D CT Scan (Worth RM300)</p>
+                <form id="lead-form" onsubmit="event.preventDefault(); window.submitLead();">
+                    <input type="text" id="input-name" class="form-control" placeholder="Your Name" required>
+                    <input type="tel" id="input-phone" class="form-control" placeholder="Phone Number" required>
+                    <select id="input-interest" class="form-control">
+                        <option value="Single Implant">Single Tooth Implant</option>
+                        <option value="Full Arch">Full Arch / All-on-4</option>
+                        <option value="Checkup">General Checkup</option>
+                    </select>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Claim Free Scan</button>
+                </form>
+                <p style="text-align: center; font-size: 0.8rem; color: #aaa; margin-top: 1rem;">Limited to first 10 slots this month.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEFORE & AFTER -->
+    <section style="padding: 5rem 0; background: var(--bg-color);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Real Results</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div class="ba-card">
+                    <div style="position: relative;">
+                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=500&q=80" alt="Smile Result">
+                        <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.6); color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">After Treatment</div>
+                    </div>
+                    <h3>Full Mouth Rehabilitation</h3>
+                    <p style="color: #666; font-size: 0.9rem;">"I can smile confidently for family photos now."</p>
+                </div>
+                <div class="ba-card">
+                    <div style="position: relative;">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=500&q=80" alt="Smile Result">
+                        <div style="position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.6); color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">After Treatment</div>
+                    </div>
+                    <h3>Single Implant</h3>
+                    <p style="color: #666; font-size: 0.9rem;">"Matches my other teeth perfectly."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section style="padding: 5rem 0; background: white;">
+        <div class="container">
+            <div id="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; text-align: center;"></div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section style="padding: 5rem 0; background: var(--bg-color);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Patient Stories</h2>
+            <div id="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;"></div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="padding: 5rem 0; background: white;">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Common Questions</h2>
+            <div id="faq-container"></div>
+        </div>
+    </section>
+
+    <!-- STICKY MOBILE BAR -->
+    <div class="sticky-mobile">
+        <div style="display: flex; flex-direction: column;">
+            <span style="font-weight: bold; color: var(--primary-color);">Free 3D Scan</span>
+            <span style="font-size: 0.8rem; color: #666;">Worth RM300</span>
+        </div>
+        <button class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;" onclick="document.querySelector('#lead-form').scrollIntoView({behavior: 'smooth'})">Claim Offer</button>
+    </div>
+
+    <!-- THANK YOU MODAL -->
+    <div id="thank-you-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 3rem; border-radius: 20px; text-align: center; max-width: 500px; margin: 20px;">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">✨</div>
+            <h2 style="margin-bottom: 1rem; color: var(--primary-color);">You're All Set!</h2>
+            <p style="margin-bottom: 2rem; color: #666;">Our clinic coordinator will WhatsApp you within 2 hours to schedule your scan.</p>
+            <button class="btn-primary" onclick="document.getElementById('thank-you-modal').style.display='none'">Close</button>
+        </div>
+    </div>
+
+    <script>
+        (function init() {
+            // Hero
+            document.getElementById('hero-headline').innerText = window.FUNNEL_DATA.hero.headline;
+            document.getElementById('hero-subheadline').innerText = window.FUNNEL_DATA.hero.subheadline;
+            document.getElementById('hero-bullets').innerHTML = window.FUNNEL_DATA.hero.bullets.map(b => `<li style="margin-bottom: 10px; display: flex; align-items: center;"><span style="color: var(--primary-color); margin-right: 10px;">✔</span> ${b}</li>`).join('');
+
+            // Features
+            document.getElementById('features-grid').innerHTML = window.FUNNEL_DATA.features.map(f => `
+                <div>
+                    <div style="font-size: 3rem; margin-bottom: 1rem; background: var(--bg-color); width: 80px; height: 80px; line-height: 80px; border-radius: 50%; margin: 0 auto 1rem;">${f.icon}</div>
+                    <h3 style="margin-bottom: 0.5rem;">${f.title}</h3>
+                    <p style="color: #666;">${f.desc}</p>
+                </div>
+            `).join('');
+
+            // Reviews
+            document.getElementById('reviews-grid').innerHTML = window.FUNNEL_DATA.reviews.map(r => `
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--box-shadow);">
+                    <div style="color: #ffc107; margin-bottom: 1rem;">★★★★★</div>
+                    <p style="font-style: italic; margin-bottom: 1.5rem; color: #555;">"${r.text}"</p>
+                    <div style="font-weight: bold; color: var(--primary-color);">- ${r.author}</div>
+                </div>
+            `).join('');
+
+            // FAQ
+            document.getElementById('faq-container').innerHTML = window.FUNNEL_DATA.faq.map(f => `
+                <details style="margin-bottom: 1rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
+                    <summary style="font-weight: 600; cursor: pointer; padding: 10px; color: #2c3e50;">${f.q}</summary>
+                    <p style="margin-top: 0.5rem; color: #666; padding: 0 10px;">${f.a}</p>
+                </details>
+            `).join('');
+        })();
+
+        window.submitLead = function() {
+            const btn = document.querySelector('#lead-form button');
+            const originalText = btn.innerText;
+            btn.innerText = "Submitting...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('thank-you-modal').style.display = 'flex';
+                btn.innerText = originalText;
+                btn.disabled = false;
+                document.getElementById('lead-form').reset();
+            }, 1500);
+        };
+    </script>
+</body>
+</html>

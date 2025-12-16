@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KilatKing - Premium Car Care</title>
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --secondary-color: #b71c1c;
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --white: #2d2d2d;
+            --btn-radius: 4px;
+            --box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Lato', sans-serif;
+        }
+        body { font-family: var(--font-body); background: var(--bg-color); margin: 0; padding: 0; color: var(--text-color); padding-bottom: 80px; }
+        .container { max-width: 1000px; margin: 0 auto; background: var(--white); box-shadow: var(--box-shadow); min-height: 100vh; }
+        
+        h1, h2, h3 { font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 1px; }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; font-weight: 800; }
+        
+        .hero-split { display: flex; flex-wrap: wrap; padding: 4rem 2rem; align-items: center; gap: 2rem; background: linear-gradient(to bottom right, #2d2d2d, #1a1a1a); }
+        .hero-text { flex: 1; min-width: 300px; }
+        .hero-media { flex: 1; min-width: 300px; }
+        .media-wrapper { position: relative; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: var(--btn-radius); background: #000; border: 2px solid var(--primary-color); }
+        .media-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+
+        .cta-button { 
+            background: var(--primary-color); color: white; padding: 1.2rem 2.5rem; font-size: 1.2rem; 
+            text-decoration: none; font-weight: bold; border-radius: var(--btn-radius); 
+            display: inline-block; border: none; cursor: pointer; width: 100%;
+            transition: all 0.2s; text-transform: uppercase;
+        }
+        .cta-button:hover { background: var(--secondary-color); transform: translateY(-2px); }
+
+        .bundle-option { border: 1px solid #444; padding: 1.5rem; margin-bottom: 1rem; border-radius: var(--btn-radius); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; background: #333; }
+        .bundle-option:hover { background: #444; border-color: #666; }
+        .bundle-option.selected { border: 2px solid var(--primary-color); background: #3d2020; }
+
+        /* Comparison Section */
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 2rem 0; }
+        .comp-card { background: #333; padding: 1rem; text-align: center; border-radius: 4px; }
+        .comp-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .comp-card.bad { border-bottom: 3px solid #666; }
+        .comp-card.good { border-bottom: 3px solid var(--primary-color); }
+
+        /* Checkout Modal */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(3px); }
+        .modal-content { background: #2d2d2d; padding: 2rem; border-radius: var(--btn-radius); width: 90%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto; border: 1px solid #444; color: #fff; }
+        .modal-content input { background: #444; border: 1px solid #555; color: white; }
+        
+        /* Order Bump */
+        .order-bump { background: #3d2020; border: 2px dashed var(--primary-color); padding: 15px; margin-bottom: 15px; border-radius: 4px; display: flex; align-items: start; }
+
+        /* Utilities */
+        .hidden { display: none !important; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        window.FUNNEL_DATA = {
+    "hero": {
+        "headline": "Showroom Shine in 10 Minutes",
+        "subheadline": "The #1 Nano-Ceramic Coating Spray in Malaysia. Protects against rain, mud, and UV rays.",
+        "cta_text": "Shop Now",
+        "media_type": "image",
+        "media_url": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+    },
+    "variants": [
+        {
+            "id": "single",
+            "label": "1 Bottle (Trial)",
+            "price": 49.0
+        },
+        {
+            "id": "double",
+            "label": "2 Bottles (Save RM20)",
+            "price": 79.0
+        },
+        {
+            "id": "family",
+            "label": "3 Bottles + Free Cloth",
+            "price": 99.0
+        }
+    ],
+    "products": {
+        "bump": {
+            "id": "sponge",
+            "label": "Premium Applicator Sponge",
+            "price": 9.9
+        },
+        "upsell": {
+            "id": "tire_shine",
+            "label": "Add Tire Shine Gel?",
+            "price": 29.0
+        }
+    },
+    "upsell_page": {
+        "headline": "Wait! Don't Forget Your Tires",
+        "subheadline": "Get our long-lasting Tire Shine Gel for 50% OFF. One time offer.",
+        "image_url": "https://images.unsplash.com/photo-1552934215-1a96e8195326?auto=format&fit=crop&w=400&q=80",
+        "cta_yes": "Yes, Add to Order - RM29",
+        "cta_no": "No thanks, I'll skip this"
+    },
+    "reviews": [
+        {
+            "author": "Jason K.",
+            "text": "Water beads off instantly. Best coating I've used."
+        },
+        {
+            "author": "Siti M.",
+            "text": "My old Saga looks brand new again!"
+        }
+    ],
+    "faq": [
+        {
+            "q": "How long does one bottle last?",
+            "a": "One bottle can coat a sedan 3-4 times."
+        },
+        {
+            "q": "Is it safe for glass?",
+            "a": "Yes, it works great on windshields as a rain repellent."
+        }
+    ],
+    "theme": {
+        "primary": "#d32f2f",
+        "bg": "#1a1a1a",
+        "text": "#f0f0f0",
+        "light_bg": "#2d2d2d",
+        "font_heading": "Montserrat, sans-serif",
+        "font_body": "Lato, sans-serif",
+        "radius": "4px",
+        "shadow": "0 4px 20px rgba(0,0,0,0.5)"
+    }
+};
+        window.FUNNEL_STATE = { selectedVariant: null, lastOrder: null };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- HERO -->
+        <section class="hero-split">
+            <div class="hero-text">
+                <div style="color: var(--primary-color); font-weight: bold; margin-bottom: 10px;">🔥 SELLING FAST</div>
+                <h1 id="hero-headline"></h1>
+                <p id="hero-subheadline" style="font-size: 1.2rem; color: #aaa; margin-bottom: 2rem;"></p>
+                <button class="cta-button" onclick="document.getElementById('offer-section').scrollIntoView({behavior: 'smooth'})" id="hero-cta"></button>
+                
+                <div style="margin-top: 2rem; display: flex; gap: 15px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.5rem;">🛡️</div>
+                        <div style="font-size: 0.8rem; color: #888;">9H Hardness</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.5rem;">💧</div>
+                        <div style="font-size: 0.8rem; color: #888;">Hydrophobic</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.5rem;">☀️</div>
+                        <div style="font-size: 0.8rem; color: #888;">UV Protection</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-media">
+                <div class="media-wrapper" id="hero-media-container"></div>
+            </div>
+        </section>
+
+        <!-- COMPARISON -->
+        <section style="padding: 2rem; background: #222;">
+            <h2 style="text-align: center; margin-bottom: 1rem;">The KilatKing Difference</h2>
+            <div class="comparison-grid">
+                <div class="comp-card bad">
+                    <h3>❌ Ordinary Wax</h3>
+                    <p style="font-size: 0.9rem; color: #aaa;">Lasts only 2 weeks. Melts in hot sun. Attracts dust.</p>
+                </div>
+                <div class="comp-card good">
+                    <h3>✅ KilatKing Ceramic</h3>
+                    <p style="font-size: 0.9rem; color: #aaa;">Lasts 6 months. Heat resistant. Repels water & dust.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUNDLE SELECTOR -->
+        <section id="offer-section" style="padding: 4rem 2rem; background: #2d2d2d;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Select Your Package</h2>
+            <div id="bundle-grid"></div>
+            <button id="main-checkout-btn" class="cta-button" style="margin-top: 2rem; padding: 1.5rem; font-size: 1.5rem;" onclick="window.openCheckout()">Add to Cart</button>
+        </section>
+
+        <!-- REVIEWS -->
+        <section style="padding: 4rem 2rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Customer Reviews</h2>
+            <div id="reviews-grid"></div>
+        </section>
+        
+        <!-- FAQ -->
+        <section style="padding: 4rem 2rem; background: #222;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">FAQ</h2>
+            <div id="faq-grid"></div>
+        </section>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="checkout-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button onclick="document.getElementById('checkout-modal').style.display='none'" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: white;">&times;</button>
+            <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">Secure Checkout via Lean X</h2>
+            
+            <div style="background: #333; padding: 1rem; border-radius: 5px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; font-weight: bold;">
+                <span>Total:</span>
+                <span id="checkout-total">Calculating...</span>
+            </div>
+
+            <form id="checkout-form" onsubmit="event.preventDefault(); window.handleMainPurchase();">
+                <input type="email" placeholder="Email Address" required style="width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 5px; box-sizing: border-box;">
+                <input type="text" placeholder="Card Number" required style="width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 5px; box-sizing: border-box;">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" placeholder="MM/YY" required style="flex: 1; padding: 12px; margin-bottom: 10px; border-radius: 5px; box-sizing: border-box;">
+                    <input type="text" placeholder="CVC" required style="flex: 1; padding: 12px; margin-bottom: 10px; border-radius: 5px; box-sizing: border-box;">
+                </div>
+                
+                <!-- ORDER BUMP -->
+                <div id="order-bump-container" class="order-bump">
+                    <input type="checkbox" id="order-bump-check" style="margin-top: 5px; margin-right: 10px; transform: scale(1.5);" onchange="window.toggleBump(this)">
+                    <div>
+                        <label for="order-bump-check" style="font-weight: bold; color: #fff; cursor: pointer;">Yes! Add Priority Processing</label>
+                        <p style="font-size: 0.85rem; color: #aaa; margin-top: 5px;">Get <span id="bump-offer-name">Priority Processing</span> for just <span style="color: var(--primary-color); font-weight: bold;" id="bump-price">$4.99</span>.</p>
+                    </div>
+                </div>
+
+                <button type="submit" id="pay-button" class="cta-button" style="width: 100%; font-size: 1.2rem; padding: 1rem;">Complete Order</button>
+                <div style="text-align: center; font-size: 0.8rem; color: #888; margin-top: 15px;">
+                    <span style="opacity: 0.7;">Powered by</span> <strong style="color: #fff;">Lean X Payment Gateway</strong>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- UPSELL PAGE -->
+    <div id="upsell-page" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1a; z-index: 3100; overflow-y: auto; flex-direction: column; align-items: center; justify-content: center; color: white;">
+        <div id="upsell-content" style="max-width: 800px; margin: 0 auto; padding: 3rem 2rem; text-align: center;"></div>
+    </div>
+
+    <!-- THANK YOU MODAL -->
+    <div id="thank-you-modal" class="modal-overlay">
+        <div class="modal-content" style="text-align: center;">
+            <div style="font-size: 5rem; margin-bottom: 1rem;">🎉</div>
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Order Confirmed!</h1>
+            <div id="order-summary" style="background: #333; padding: 1rem; border-radius: 5px; margin-bottom: 2rem; text-align: left;"></div>
+            <button class="cta-button" onclick="window.location.reload()">Back to Home</button>
+        </div>
+    </div>
+
+    <script>
+        (function init() {
+            if (!window.FUNNEL_DATA.hero) return;
+            
+            // Hero
+            document.getElementById('hero-headline').innerText = window.FUNNEL_DATA.hero.headline;
+            document.getElementById('hero-subheadline').innerText = window.FUNNEL_DATA.hero.subheadline;
+            document.getElementById('hero-cta').innerText = window.FUNNEL_DATA.hero.cta_text;
+            
+            const mediaContainer = document.getElementById('hero-media-container');
+            if (window.FUNNEL_DATA.hero.media_type === 'video') {
+                mediaContainer.innerHTML = `<iframe src="${window.FUNNEL_DATA.hero.media_url}" frameborder="0" allowfullscreen></iframe>`;
+            } else {
+                mediaContainer.innerHTML = `<img src="${window.FUNNEL_DATA.hero.media_url}" alt="Hero Image">`;
+            }
+
+            // Variants
+            const variants = window.FUNNEL_DATA.variants || [];
+            if (variants.length > 0) {
+                window.FUNNEL_STATE.selectedVariant = variants[0]; // Default to first
+                renderVariants();
+            }
+
+            // Reviews & FAQ
+            const reviews = window.FUNNEL_DATA.reviews || [];
+            document.getElementById('reviews-grid').innerHTML = reviews.map(r => `<div style="background:#333; padding:1rem; margin-bottom:1rem; border-radius:5px;"><strong>${r.author}</strong><p style="color:#aaa;">"${r.text}"</p></div>`).join('');
+            
+            const faq = window.FUNNEL_DATA.faq || [];
+            document.getElementById('faq-grid').innerHTML = faq.map(f => `<details style="margin-bottom:1rem; cursor:pointer; border-bottom:1px solid #444; padding-bottom:10px;"><summary><strong>${f.q}</strong></summary><p style="color:#aaa; margin-top:5px;">${f.a}</p></details>`).join('');
+        })();
+
+        function renderVariants() {
+            const container = document.getElementById('bundle-grid');
+            const variants = window.FUNNEL_DATA.variants;
+            const selectedId = window.FUNNEL_STATE.selectedVariant.id;
+            
+            container.innerHTML = variants.map((v, i) => `
+                <div class="bundle-option ${v.id === selectedId ? 'selected' : ''}" onclick="selectVariant(${i})">
+                    <span>${v.label}</span>
+                    <strong>$${v.price.toFixed(2)}</strong>
+                </div>
+            `).join('');
+            
+            document.getElementById('main-checkout-btn').innerText = `Add to Cart - $${window.FUNNEL_STATE.selectedVariant.price.toFixed(2)}`;
+        }
+
+        window.selectVariant = function(index) {
+            window.FUNNEL_STATE.selectedVariant = window.FUNNEL_DATA.variants[index];
+            renderVariants();
+        };
+
+        window.openCheckout = function() {
+            // Reset Bump
+            document.getElementById('order-bump-check').checked = false;
+            if (window.FUNNEL_DATA.products && window.FUNNEL_DATA.products.bump) {
+                const bump = window.FUNNEL_DATA.products.bump;
+                document.getElementById('bump-offer-name').innerText = bump.label;
+                document.getElementById('bump-price').innerText = '$' + bump.price.toFixed(2);
+            } else {
+                document.getElementById('order-bump-container').style.display = 'none';
+            }
+            updateCheckoutTotal();
+            document.getElementById('checkout-modal').style.display = 'flex';
+        };
+
+        window.updateCheckoutTotal = function() {
+            let total = window.FUNNEL_STATE.selectedVariant.price;
+            const bumpCheckbox = document.getElementById('order-bump-check');
+            if (bumpCheckbox && bumpCheckbox.checked && window.FUNNEL_DATA.products.bump) {
+                total += window.FUNNEL_DATA.products.bump.price;
+            }
+            document.getElementById('checkout-total').innerText = '$' + total.toFixed(2);
+        };
+
+        window.toggleBump = function() { window.updateCheckoutTotal(); };
+
+        window.handleMainPurchase = function() {
+            const payBtn = document.getElementById('pay-button');
+            const originalText = payBtn.innerText;
+            payBtn.innerText = "Processing...";
+            payBtn.disabled = true;
+
+            setTimeout(() => {
+                let total = window.FUNNEL_STATE.selectedVariant.price;
+                const items = [window.FUNNEL_STATE.selectedVariant];
+                const bumpCheckbox = document.getElementById('order-bump-check');
+                if (bumpCheckbox && bumpCheckbox.checked && window.FUNNEL_DATA.products.bump) {
+                    total += window.FUNNEL_DATA.products.bump.price;
+                    items.push(window.FUNNEL_DATA.products.bump);
+                }
+                window.FUNNEL_STATE.lastOrder = { items: items, total: total };
+                
+                document.getElementById('checkout-modal').style.display = 'none';
+                renderUpsell();
+                document.getElementById('upsell-page').style.display = 'flex';
+                payBtn.innerText = originalText;
+                payBtn.disabled = false;
+            }, 1500);
+        };
+
+        window.renderUpsell = function() {
+            const config = window.FUNNEL_DATA.upsell_page;
+            const product = window.FUNNEL_DATA.products.upsell;
+            if (!config || !product) {
+                renderThankYou();
+                document.getElementById('thank-you-modal').style.display = 'flex';
+                return;
+            }
+            document.getElementById('upsell-content').innerHTML = `
+                <h1 style="color: var(--primary-color);">${config.headline}</h1>
+                <p>${config.subheadline}</p>
+                <img src="${config.image_url}" style="max-width:300px; margin: 1rem auto; display:block; border-radius:10px;">
+                <button class="cta-button" onclick="window.handleUpsellPurchase()">${config.cta_yes}</button>
+                <br><br>
+                <a href="#" onclick="window.handleUpsellDecline(); return false;" style="color:#aaa;">${config.cta_no}</a>
+            `;
+        };
+
+        window.handleUpsellPurchase = function() {
+            const product = window.FUNNEL_DATA.products.upsell;
+            window.FUNNEL_STATE.lastOrder.items.push(product);
+            window.FUNNEL_STATE.lastOrder.total += product.price;
+            document.getElementById('upsell-page').style.display = 'none';
+            renderThankYou();
+            document.getElementById('thank-you-modal').style.display = 'flex';
+        };
+
+        window.handleUpsellDecline = function() {
+            document.getElementById('upsell-page').style.display = 'none';
+            renderThankYou();
+            document.getElementById('thank-you-modal').style.display = 'flex';
+        };
+
+        window.renderThankYou = function() {
+            const order = window.FUNNEL_STATE.lastOrder;
+            document.getElementById('order-summary').innerHTML = `
+                <h3>Order Summary</h3>
+                ${order.items.map(i => `<div>${i.label || i.id} - $${i.price.toFixed(2)}</div>`).join('')}
+                <hr style="border-color:#555;">
+                <strong>Total: $${order.total.toFixed(2)}</strong>
+            `;
+        };
+    </script>
+</body>
+</html>

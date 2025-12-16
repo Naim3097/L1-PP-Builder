@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthMastery KL 2025 - Financial Freedom Seminar</title>
+    <style>
+        :root {
+            --primary-color: #d4af37; /* Gold */
+            --secondary-color: #c5a028;
+            --bg-color: #111111;
+            --card-bg: #1a1a1a;
+            --text-color: #f0f0f0;
+            --white: #ffffff;
+            --btn-radius: 4px;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+        body { font-family: var(--font-body); background: var(--bg-color); margin: 0; padding: 0; color: var(--text-color); line-height: 1.6; }
+        h1, h2, h3 { font-family: var(--font-heading); color: var(--primary-color); margin-top: 0; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37 0%, #c5a028 100%); color: #000; padding: 1rem 2.5rem;
+            font-size: 1.1rem; border: none; border-radius: var(--btn-radius); cursor: pointer; font-weight: 700;
+            transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; display: inline-block;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
+        
+        /* Hero */
+        .hero-section { 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover; background-position: center; padding: 6rem 0; text-align: center;
+        }
+        
+        /* Countdown */
+        .countdown-timer { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; }
+        .timer-box { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; min-width: 80px; border: 1px solid var(--primary-color); }
+        .timer-val { font-size: 2.5rem; font-weight: 700; color: var(--white); line-height: 1; }
+        .timer-label { font-size: 0.8rem; text-transform: uppercase; color: var(--primary-color); margin-top: 5px; }
+
+        /* Cards */
+        .card { background: var(--card-bg); padding: 2rem; border-radius: 8px; border: 1px solid #333; }
+        
+        /* Pricing */
+        .pricing-card { background: var(--card-bg); padding: 2rem; border-radius: 8px; border: 1px solid #333; text-align: center; transition: transform 0.3s; position: relative; }
+        .pricing-card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
+        .pricing-card.featured { border: 2px solid var(--primary-color); background: #222; }
+        .price-tag { font-size: 3rem; color: var(--white); font-weight: 700; margin: 1rem 0; }
+        .price-tag span { font-size: 1rem; color: #888; font-weight: 400; }
+
+        @media (max-width: 768px) {
+            .countdown-timer { gap: 1rem; }
+            .timer-box { min-width: 60px; padding: 0.5rem; }
+            .timer-val { font-size: 1.5rem; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+        window.FUNNEL_DATA = {
+            "event": {
+                "title": "WealthMastery KL 2025",
+                "subtitle": "Unlock the Secrets to Financial Freedom & Investment Success",
+                "date": "October 15-16, 2025",
+                "venue": "Grand Hyatt Kuala Lumpur",
+                "speaker": "Dato' Azman",
+                "speaker_bio": "With over 20 years of experience in property and stock market investment, Dato' Azman has helped over 5,000 Malaysians achieve financial independence."
+            },
+            "tickets": [
+                { "name": "General", "price": "RM 197", "features": ["2-Day Access", "Workbook", "Networking Session"] },
+                { "name": "VIP", "price": "RM 497", "features": ["Front Row Seats", "Private Dinner with Speaker", "Exclusive Mastermind Group", "Lifetime Recording Access"] }
+            ],
+            "agenda": [
+                { "time": "09:00 AM", "topic": "The Psychology of Wealth" },
+                { "time": "11:00 AM", "topic": "Property Investment Strategies 2025" },
+                { "time": "02:00 PM", "topic": "Stock Market Mastery" },
+                { "time": "04:00 PM", "topic": "Passive Income Blueprint" }
+            ]
+        };
+    </script>
+</head>
+<body>
+    <!-- HERO -->
+    <section class="hero-section">
+        <div class="container">
+            <div style="display: inline-block; border: 1px solid var(--primary-color); padding: 5px 15px; color: var(--primary-color); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem;">Kuala Lumpur • Oct 15-16</div>
+            <h1 id="event-title" style="font-size: 3.5rem; color: var(--white); margin-bottom: 1rem; line-height: 1.1;"></h1>
+            <p id="event-subtitle" style="font-size: 1.3rem; color: #ccc; max-width: 700px; margin: 0 auto 2rem;"></p>
+            
+            <div class="countdown-timer" id="countdown">
+                <div class="timer-box"><div class="timer-val">04</div><div class="timer-label">Days</div></div>
+                <div class="timer-box"><div class="timer-val">12</div><div class="timer-label">Hours</div></div>
+                <div class="timer-box"><div class="timer-val">45</div><div class="timer-label">Mins</div></div>
+                <div class="timer-box"><div class="timer-val">30</div><div class="timer-label">Secs</div></div>
+            </div>
+
+            <button class="btn-gold" onclick="document.getElementById('tickets').scrollIntoView({behavior: 'smooth'})">Reserve Your Seat</button>
+        </div>
+    </section>
+
+    <!-- SPEAKER -->
+    <section style="padding: 5rem 0; background: #1a1a1a;">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4rem;">
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Speaker" style="width: 100%; border-radius: 8px; border: 2px solid var(--primary-color);">
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <h2 style="color: var(--white);">Meet Your Mentor</h2>
+                    <h3 id="speaker-name" style="font-size: 2rem; margin-bottom: 1.5rem;"></h3>
+                    <p id="speaker-bio" style="color: #ccc; font-size: 1.1rem; margin-bottom: 2rem;"></p>
+                    <div style="display: flex; gap: 2rem;">
+                        <div>
+                            <div style="font-size: 2rem; color: var(--primary-color); font-weight: 700;">20+</div>
+                            <div style="color: #888; font-size: 0.9rem;">Years Experience</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2rem; color: var(--primary-color); font-weight: 700;">5k+</div>
+                            <div style="color: #888; font-size: 0.9rem;">Students Mentored</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AGENDA -->
+    <section style="padding: 5rem 0;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; color: var(--white);">Event Agenda</h2>
+            <div id="agenda-grid" style="max-width: 800px; margin: 0 auto;"></div>
+        </div>
+    </section>
+
+    <!-- TICKETS -->
+    <section id="tickets" style="padding: 5rem 0; background: #1a1a1a;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem; color: var(--white);">Choose Your Experience</h2>
+            <p style="text-align: center; color: #888; margin-bottom: 3rem;">Limited seats available due to venue capacity.</p>
+            
+            <div id="pricing-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding: 3rem 0; text-align: center; border-top: 1px solid #333; color: #666;">
+        <div class="container">
+            <p>&copy; 2025 WealthMastery Events. All Rights Reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 1rem;">Disclaimer: Results may vary. All investments carry risk.</p>
+        </div>
+    </footer>
+
+    <!-- REGISTRATION MODAL -->
+    <div id="reg-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center;">
+        <div style="background: #222; padding: 2.5rem; border-radius: 8px; width: 90%; max-width: 450px; position: relative; border: 1px solid var(--primary-color);">
+            <button onclick="document.getElementById('reg-modal').style.display='none'" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #fff;">&times;</button>
+            <h3 style="text-align: center; margin-bottom: 0.5rem; color: var(--white);">Secure Your Seat</h3>
+            <p style="text-align: center; color: #888; margin-bottom: 1.5rem;">You are selecting: <strong id="selected-ticket" style="color: var(--primary-color);">VIP Ticket</strong></p>
+            
+            <form onsubmit="event.preventDefault(); alert('Redirecting to Lean X Payment Gateway...');">
+                <input type="text" placeholder="Full Name" required style="width: 100%; padding: 12px; margin-bottom: 15px; background: #333; border: 1px solid #444; color: white; border-radius: 4px;">
+                <input type="email" placeholder="Email Address" required style="width: 100%; padding: 12px; margin-bottom: 15px; background: #333; border: 1px solid #444; color: white; border-radius: 4px;">
+                <input type="tel" placeholder="Phone Number" required style="width: 100%; padding: 12px; margin-bottom: 15px; background: #333; border: 1px solid #444; color: white; border-radius: 4px;">
+                <button type="submit" class="btn-gold" style="width: 100%;">Proceed to Payment</button>
+                <p style="text-align: center; font-size: 0.75rem; color: #666; margin-top: 1rem;">Powered by Lean X Payment Gateway</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        (function init() {
+            // Hero
+            document.getElementById('event-title').innerText = window.FUNNEL_DATA.event.title;
+            document.getElementById('event-subtitle').innerText = window.FUNNEL_DATA.event.subtitle;
+            
+            // Speaker
+            document.getElementById('speaker-name').innerText = window.FUNNEL_DATA.event.speaker;
+            document.getElementById('speaker-bio').innerText = window.FUNNEL_DATA.event.speaker_bio;
+
+            // Agenda
+            document.getElementById('agenda-grid').innerHTML = window.FUNNEL_DATA.agenda.map(item => `
+                <div style="display: flex; gap: 2rem; padding: 1.5rem; border-bottom: 1px solid #333; align-items: center;">
+                    <div style="color: var(--primary-color); font-weight: 700; min-width: 100px;">${item.time}</div>
+                    <div style="color: #ccc; font-size: 1.1rem;">${item.topic}</div>
+                </div>
+            `).join('');
+
+            // Tickets
+            document.getElementById('pricing-grid').innerHTML = window.FUNNEL_DATA.tickets.map(t => `
+                <div class="pricing-card ${t.name === 'VIP' ? 'featured' : ''}">
+                    ${t.name === 'VIP' ? '<div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary-color); color: black; padding: 2px 10px; font-size: 0.8rem; font-weight: bold; border-radius: 4px;">BEST VALUE</div>' : ''}
+                    <h3 style="color: var(--white); margin-bottom: 0.5rem;">${t.name}</h3>
+                    <div class="price-tag">${t.price}</div>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; color: #ccc;">
+                        ${t.features.map(f => `<li style="margin-bottom: 10px; display: flex; align-items: center;"><span style="color: var(--primary-color); margin-right: 10px;">✓</span> ${f}</li>`).join('')}
+                    </ul>
+                    <button class="btn-gold" style="width: 100%;" onclick="openModal('${t.name}')">Select Ticket</button>
+                </div>
+            `).join('');
+        })();
+
+        function openModal(ticketType) {
+            document.getElementById('selected-ticket').innerText = ticketType + " Ticket";
+            document.getElementById('reg-modal').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

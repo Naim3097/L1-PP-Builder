@@ -1,0 +1,63 @@
+{
+    "hero": {
+        "headline": "Affordable Dental Implants in KL",
+        "subheadline": "Restore your smile with our painless, high-tech implant procedure. 0% Installment Plan available.",
+        "cta_text": "Free Consultation",
+        "media_type": "image",
+        "media_url": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80"
+    },
+    "form": {
+        "title": "Claim Your Free Check-up",
+        "fields": [
+            {
+                "type": "text",
+                "label": "Full Name"
+            },
+            {
+                "type": "text",
+                "label": "Phone Number"
+            },
+            {
+                "type": "select",
+                "label": "Treatment Interest",
+                "options": [
+                    "Implants",
+                    "Braces",
+                    "Veneers",
+                    "General Checkup"
+                ]
+            }
+        ],
+        "cta": "Book Now"
+    },
+    "reviews": [
+        {
+            "author": "Kamal R.",
+            "text": "Dr. Lim is very gentle. I didn't feel a thing during the implant surgery."
+        },
+        {
+            "author": "Jessica W.",
+            "text": "Best dental clinic in Bangsar. Highly recommended."
+        }
+    ],
+    "faq": [
+        {
+            "q": "Is it painful?",
+            "a": "We use local anesthesia, so the procedure is virtually painless."
+        },
+        {
+            "q": "Can I pay by installment?",
+            "a": "Yes, we accept Maybank and Public Bank 0% installment plans."
+        }
+    ],
+    "theme": {
+        "primary": "#00bfa5",
+        "bg": "#f0fffc",
+        "text": "#444",
+        "light_bg": "#ffffff",
+        "font_heading": "Poppins, sans-serif",
+        "font_body": "Open Sans, sans-serif",
+        "google_fonts": "Poppins:600|Open+Sans:400",
+        "radius": "12px"
+    }
+}

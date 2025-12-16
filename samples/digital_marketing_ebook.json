@@ -1,0 +1,70 @@
+{
+    "hero": {
+        "headline": "Explode Your Sales on TikTok Shop",
+        "subheadline": "The ultimate guide to going viral and selling out inventory in 2024.",
+        "cta_text": "Download Ebook",
+        "media_type": "image",
+        "media_url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80"
+    },
+    "variants": [
+        {
+            "id": "ebook",
+            "label": "Ebook Only",
+            "price": 39.0
+        },
+        {
+            "id": "bundle",
+            "label": "Ebook + Video Course",
+            "price": 89.0
+        }
+    ],
+    "products": {
+        "bump": {
+            "id": "templates",
+            "label": "Add Viral Video Templates",
+            "price": 19.0
+        },
+        "upsell": {
+            "id": "coaching",
+            "label": "1-on-1 Audit Call?",
+            "price": 199.0
+        }
+    },
+    "upsell_page": {
+        "headline": "Need Personal Help?",
+        "subheadline": "Let me audit your TikTok account and give you a custom strategy.",
+        "image_url": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80",
+        "cta_yes": "Yes, Book Audit Call",
+        "cta_no": "No thanks"
+    },
+    "reviews": [
+        {
+            "author": "Hafiz",
+            "text": "Went from 0 to RM10k sales in my first month."
+        },
+        {
+            "author": "Elaine",
+            "text": "The templates alone are worth the price."
+        }
+    ],
+    "faq": [
+        {
+            "q": "Is this for beginners?",
+            "a": "Yes, we cover account setup to advanced ads."
+        },
+        {
+            "q": "Format?",
+            "a": "PDF download sent instantly to email."
+        }
+    ],
+    "theme": {
+        "primary": "#000000",
+        "bg": "#ffffff",
+        "text": "#333",
+        "light_bg": "#f0f0f0",
+        "font_heading": "Inter, sans-serif",
+        "font_body": "Inter, sans-serif",
+        "google_fonts": "Inter:400,700,900",
+        "radius": "8px"
+    }
+}

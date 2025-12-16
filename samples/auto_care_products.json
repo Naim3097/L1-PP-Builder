@@ -1,0 +1,76 @@
+{
+    "hero": {
+        "headline": "Showroom Shine in 10 Minutes",
+        "subheadline": "The #1 Nano-Ceramic Coating Spray in Malaysia. Protects against rain, mud, and UV rays.",
+        "cta_text": "Shop Now",
+        "media_type": "image",
+        "media_url": "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=800&q=80"
+    },
+    "variants": [
+        {
+            "id": "single",
+            "label": "1 Bottle (Trial)",
+            "price": 49.0
+        },
+        {
+            "id": "double",
+            "label": "2 Bottles (Save RM20)",
+            "price": 79.0
+        },
+        {
+            "id": "family",
+            "label": "3 Bottles + Free Cloth",
+            "price": 99.0
+        }
+    ],
+    "products": {
+        "bump": {
+            "id": "sponge",
+            "label": "Premium Applicator Sponge",
+            "price": 9.9
+        },
+        "upsell": {
+            "id": "tire_shine",
+            "label": "Add Tire Shine Gel?",
+            "price": 29.0
+        }
+    },
+    "upsell_page": {
+        "headline": "Wait! Don't Forget Your Tires",
+        "subheadline": "Get our long-lasting Tire Shine Gel for 50% OFF. One time offer.",
+        "image_url": "https://images.unsplash.com/photo-1552934215-1a96e8195326?auto=format&fit=crop&w=400&q=80",
+        "cta_yes": "Yes, Add to Order - RM29",
+        "cta_no": "No thanks, I'll skip this"
+    },
+    "reviews": [
+        {
+            "author": "Jason K.",
+            "text": "Water beads off instantly. Best coating I've used."
+        },
+        {
+            "author": "Siti M.",
+            "text": "My old Saga looks brand new again!"
+        }
+    ],
+    "faq": [
+        {
+            "q": "How long does one bottle last?",
+            "a": "One bottle can coat a sedan 3-4 times."
+        },
+        {
+            "q": "Is it safe for glass?",
+            "a": "Yes, it works great on windshields as a rain repellent."
+        }
+    ],
+    "theme": {
+        "primary": "#d32f2f",
+        "bg": "#1a1a1a",
+        "text": "#f0f0f0",
+        "light_bg": "#2d2d2d",
+        "font_heading": "Montserrat, sans-serif",
+        "font_body": "Lato, sans-serif",
+        "google_fonts": "Montserrat:800|Lato:400",
+        "radius": "4px",
+        "shadow": "0 4px 20px rgba(0,0,0,0.5)"
+    }
+}

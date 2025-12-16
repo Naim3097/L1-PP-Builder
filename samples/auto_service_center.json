@@ -1,0 +1,63 @@
+{
+    "hero": {
+        "headline": "Expert Car Service & Repair in Klang Valley",
+        "subheadline": "From oil changes to engine overhauls. Honest pricing, genuine parts.",
+        "cta_text": "Book Appointment",
+        "media_type": "image",
+        "media_url": "https://images.unsplash.com/photo-1530046339160-711533799eb7?auto=format&fit=crop&w=800&q=80"
+    },
+    "form": {
+        "title": "Book Your Slot",
+        "fields": [
+            {
+                "type": "text",
+                "label": "Vehicle Model"
+            },
+            {
+                "type": "select",
+                "label": "Service Needed",
+                "options": [
+                    "Minor Service (Oil/Filter)",
+                    "Major Service",
+                    "Aircond Service",
+                    "Brake Inspection"
+                ]
+            },
+            {
+                "type": "text",
+                "label": "Phone Number"
+            }
+        ],
+        "cta": "Confirm Booking"
+    },
+    "reviews": [
+        {
+            "author": "David T.",
+            "text": "They diagnosed the noise that 3 other shops couldn't find."
+        },
+        {
+            "author": "Mei Ling",
+            "text": "Clean workshop and transparent pricing."
+        }
+    ],
+    "faq": [
+        {
+            "q": "Do you provide warranty?",
+            "a": "Yes, 6 months warranty on all parts and labor."
+        },
+        {
+            "q": "Are you open on Sundays?",
+            "a": "We are open Mon-Sat, 9am to 6pm."
+        }
+    ],
+    "theme": {
+        "primary": "#ff6b00",
+        "bg": "#ffffff",
+        "text": "#222",
+        "light_bg": "#f4f4f4",
+        "font_heading": "Oswald, sans-serif",
+        "font_body": "Roboto, sans-serif",
+        "google_fonts": "Oswald:700|Roboto:400",
+        "radius": "0px"
+    }
+}

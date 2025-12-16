@@ -1,0 +1,70 @@
+{
+    "hero": {
+        "headline": "Master the 2024 Bull Run",
+        "subheadline": "Join Malaysia's largest crypto trading workshop. Learn the strategies used by top whales.",
+        "cta_text": "Reserve Your Seat",
+        "media_type": "video",
+        "media_url": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    },
+    "variants": [
+        {
+            "id": "general",
+            "label": "General Admission",
+            "price": 97.0
+        },
+        {
+            "id": "vip",
+            "label": "VIP (Front Row + Dinner)",
+            "price": 297.0
+        }
+    ],
+    "products": {
+        "bump": {
+            "id": "recording",
+            "label": "Add Event Recordings",
+            "price": 47.0
+        },
+        "upsell": {
+            "id": "mentorship",
+            "label": "Join Inner Circle Mentorship?",
+            "price": 997.0
+        }
+    },
+    "upsell_page": {
+        "headline": "Wait! One Last Thing...",
+        "subheadline": "Get direct access to our mentors for 30 days.",
+        "image_url": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=400&q=80",
+        "cta_yes": "Yes, Upgrade to Inner Circle",
+        "cta_no": "No thanks"
+    },
+    "reviews": [
+        {
+            "author": "Ali H.",
+            "text": "I made back the ticket price in my first trade."
+        },
+        {
+            "author": "Ken L.",
+            "text": "Eye-opening strategies. Not the usual basic stuff."
+        }
+    ],
+    "faq": [
+        {
+            "q": "Is this suitable for beginners?",
+            "a": "Yes, we start from the basics on Day 1."
+        },
+        {
+            "q": "Where is the venue?",
+            "a": "Connexion Conference & Event Centre, Bangsar South."
+        }
+    ],
+    "theme": {
+        "primary": "#fbc02d",
+        "bg": "#121212",
+        "text": "#e0e0e0",
+        "light_bg": "#1e1e1e",
+        "font_heading": "Montserrat, sans-serif",
+        "font_body": "Roboto, sans-serif",
+        "google_fonts": "Montserrat:900|Roboto:300",
+        "radius": "0px"
+    }
+}

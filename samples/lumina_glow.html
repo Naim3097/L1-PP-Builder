@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Glow - Premium Skin Care</title>
+    <style>
+        :root {
+            --primary-color: #ff4081;
+            --secondary-color: #f50057;
+            --bg-color: #fff0f5;
+            --text-color: #333;
+            --white: #ffffff;
+            --btn-radius: 50px;
+            --box-shadow: 0 10px 30px rgba(255, 64, 129, 0.15);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+        body { font-family: var(--font-body); background: var(--bg-color); margin: 0; padding: 0; color: var(--text-color); padding-bottom: 80px; }
+        .container { max-width: 1100px; margin: 0 auto; background: var(--white); box-shadow: var(--box-shadow); min-height: 100vh; overflow: hidden; }
+        
+        /* Typography */
+        h1, h2, h3 { font-family: var(--font-heading); color: #4a4a4a; }
+        h1 { font-size: 3rem; margin-bottom: 0.5rem; line-height: 1.1; }
+        p { line-height: 1.6; color: #666; }
+
+        /* Hero Section */
+        .hero-split { display: flex; flex-wrap: wrap; align-items: center; min-height: 80vh; }
+        .hero-text { flex: 1; padding: 4rem; min-width: 350px; }
+        .hero-media { flex: 1; height: 80vh; min-width: 350px; position: relative; }
+        .hero-media img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Buttons */
+        .cta-button { 
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); 
+            color: white; padding: 1.2rem 3rem; font-size: 1.1rem; 
+            text-decoration: none; font-weight: 600; border-radius: var(--btn-radius); 
+            display: inline-block; border: none; cursor: pointer; 
+            box-shadow: 0 5px 15px rgba(245, 0, 87, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(245, 0, 87, 0.4); }
+
+        /* Bundle Selector */
+        .bundle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; padding: 2rem 4rem; }
+        .bundle-card { 
+            border: 2px solid #eee; padding: 2rem; border-radius: 20px; text-align: center; 
+            cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden;
+        }
+        .bundle-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+        .bundle-card.selected { border-color: var(--primary-color); background: #fff0f5; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .bundle-card.best-value::before {
+            content: 'BEST VALUE'; position: absolute; top: 15px; right: -30px; 
+            background: var(--primary-color); color: white; padding: 5px 40px; 
+            transform: rotate(45deg); font-size: 0.8rem; font-weight: bold;
+        }
+
+        /* Features */
+        .features-section { padding: 4rem; background: #fafafa; text-align: center; }
+        .features-grid { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 2rem; }
+        .feature-item { max-width: 200px; }
+        .feature-icon { font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color); }
+
+        /* Checkout Modal */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; backdrop-filter: blur(5px); align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 2.5rem; border-radius: 20px; width: 90%; max-width: 480px; position: relative; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+        
+        /* Order Bump */
+        .order-bump { background: #fff8e1; border: 2px dashed #ffc107; padding: 1rem; margin: 1.5rem 0; border-radius: 10px; display: flex; gap: 1rem; align-items: start; }
+        .order-bump input { margin-top: 5px; transform: scale(1.3); cursor: pointer; }
+
+        /* Upsell Page */
+        .upsell-container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+        .progress-bar { width: 100%; height: 10px; background: #eee; border-radius: 5px; margin-bottom: 2rem; overflow: hidden; }
+        .progress-fill { width: 75%; height: 100%; background: #4caf50; }
+
+        /* Utilities */
+        .hidden { display: none !important; }
+        .strike { text-decoration: line-through; color: #999; margin-right: 5px; }
+    </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        // SOURCE OF TRUTH DATA
+        window.FUNNEL_DATA = {
+            "hero": {
+                "headline": "Achieve Glass Skin in 7 Days",
+                "subheadline": "The viral Korean formula that hydrates, brightens, and repairs your skin barrier overnight.",
+                "cta_text": "Get Your Glow Kit",
+                "media_type": "image",
+                "media_url": "https://images.unsplash.com/photo-1556228552-523de5029136?auto=format&fit=crop&w=800&q=80"
+            },
+            "variants": [
+                { "id": "starter", "label": "Starter Kit", "price": 49.00, "desc": "1 Month Supply" },
+                { "id": "glow", "label": "Glow Bundle", "price": 89.00, "desc": "3 Month Supply + Free Serum", "best_value": true },
+                { "id": "ultimate", "label": "Ultimate Spa Set", "price": 149.00, "desc": "Full Routine + Jade Roller" }
+            ],
+            "products": {
+                "bump": { "id": "mask", "label": "Add 5x Sheet Masks", "price": 14.90 },
+                "upsell": { "id": "eye_cream", "label": "Brightening Eye Cream", "price": 29.00 }
+            },
+            "upsell_page": {
+                "headline": "Wait! Your Routine Isn't Complete...",
+                "subheadline": "Add our award-winning Eye Cream for 50% OFF. Banish dark circles instantly.",
+                "image_url": "https://images.unsplash.com/photo-1571781565036-d3f7595ca3e4?auto=format&fit=crop&w=400&q=80",
+                "cta_yes": "Yes! Add to Order - $29",
+                "cta_no": "No thanks, I don't want brighter eyes"
+            },
+            "theme": {
+                "primary": "#ff4081",
+                "bg": "#fff0f5"
+            }
+        };
+        
+        window.FUNNEL_STATE = { selectedVariant: null, lastOrder: null };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- HERO -->
+        <section class="hero-split">
+            <div class="hero-text">
+                <span style="color: var(--primary-color); font-weight: bold; letter-spacing: 2px; font-size: 0.9rem;">NEW ARRIVAL</span>
+                <h1 id="hero-headline"></h1>
+                <p id="hero-subheadline" style="font-size: 1.2rem; margin-bottom: 2.5rem;"></p>
+                <button class="cta-button" onclick="document.getElementById('offer-section').scrollIntoView({behavior: 'smooth'})" id="hero-cta"></button>
+                <div style="margin-top: 2rem; display: flex; align-items: center; gap: 10px;">
+                    <div style="color: #ffc107;">★★★★★</div>
+                    <span style="font-size: 0.9rem; color: #888;">4.9/5 from 10,000+ users</span>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img id="hero-img" src="" alt="Product">
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="features-section">
+            <h2>Why Lumina Glow?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">💧</div>
+                    <h3>Deep Hydration</h3>
+                    <p>Hyaluronic acid locks in moisture for 24 hours.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <h3>Instant Glow</h3>
+                    <p>Niacinamide brightens dull skin instantly.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌿</div>
+                    <h3>Clean Formula</h3>
+                    <p>Vegan, cruelty-free, and paraben-free.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- OFFER SECTION -->
+        <section id="offer-section" style="padding-bottom: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 1rem;">Choose Your Bundle</h2>
+            <p style="text-align: center; margin-bottom: 3rem;">30-Day Money Back Guarantee</p>
+            
+            <div id="bundle-grid" class="bundle-grid"></div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button id="main-checkout-btn" class="cta-button" style="padding: 1.5rem 4rem; font-size: 1.5rem;" onclick="window.openCheckout()">Select a Bundle</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="checkout-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button onclick="document.getElementById('checkout-modal').style.display='none'" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #999;">&times;</button>
+            <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">Secure Checkout via Lean X</h3>
+            
+            <div style="background: #f9f9f9; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; font-weight: bold; border: 1px solid #eee;">
+                <span>Total:</span>
+                <span id="checkout-total" style="color: var(--primary-color); font-size: 1.2rem;">...</span>
+            </div>
+
+            <form id="checkout-form" onsubmit="event.preventDefault(); window.handleMainPurchase();">
+                <input type="email" placeholder="Email Address" required style="width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-family: inherit;">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" placeholder="Card Number" required style="flex: 2; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-family: inherit;">
+                    <input type="text" placeholder="MM/YY" required style="flex: 1; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-family: inherit;">
+                </div>
+                
+                <!-- ORDER BUMP -->
+                <div class="order-bump">
+                    <input type="checkbox" id="order-bump-check" onchange="window.toggleBump(this)">
+                    <div>
+                        <label for="order-bump-check" style="font-weight: bold; color: #333; cursor: pointer;">One-Time Offer!</label>
+                        <p style="font-size: 0.9rem; color: #555; margin: 5px 0;">Add <strong id="bump-name">Sheet Masks</strong> for only <span style="color: #d32f2f; font-weight: bold;" id="bump-price">$14.90</span>. (Usually $30)</p>
+                    </div>
+                </div>
+
+                <button type="submit" id="pay-button" class="cta-button" style="width: 100%;">Complete Order</button>
+                <p style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 1rem;">🔒 256-bit SSL Secure Payment<br>Powered by Lean X Payment Gateway</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- UPSELL PAGE -->
+    <div id="upsell-page" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 3100; overflow-y: auto;">
+        <div class="upsell-container">
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <h2 style="color: #4caf50; margin-bottom: 1rem;">Order Received! But wait...</h2>
+            <h1 id="upsell-headline" style="font-size: 2.5rem; margin-bottom: 1rem;"></h1>
+            <p id="upsell-subheadline" style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;"></p>
+            
+            <div style="border: 3px dashed var(--primary-color); padding: 2rem; border-radius: 20px; background: #fffbf0; margin-bottom: 2rem;">
+                <img id="upsell-img" src="" style="max-width: 300px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <div style="margin-top: 2rem;">
+                    <button class="cta-button" onclick="window.handleUpsellPurchase()" id="upsell-yes-btn" style="font-size: 1.3rem; padding: 1.5rem 3rem; width: 100%; max-width: 400px;"></button>
+                </div>
+            </div>
+            
+            <a href="#" onclick="window.handleUpsellDecline(); return false;" id="upsell-no-btn" style="color: #999; text-decoration: underline;"></a>
+        </div>
+    </div>
+
+    <!-- THANK YOU MODAL -->
+    <div id="thank-you-modal" class="modal-overlay">
+        <div class="modal-content" style="text-align: center;">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
+            <h2 style="margin-bottom: 1rem;">You're All Set!</h2>
+            <p>A confirmation email has been sent to you.</p>
+            <div id="order-summary" style="background: #f9f9f9; padding: 1.5rem; border-radius: 10px; margin: 2rem 0; text-align: left;"></div>
+            <button class="cta-button" onclick="window.location.reload()">Back to Home</button>
+        </div>
+    </div>
+
+    <script>
+        // INITIALIZATION
+        (function init() {
+            const data = window.FUNNEL_DATA;
+            
+            // Hero
+            document.getElementById('hero-headline').innerText = data.hero.headline;
+            document.getElementById('hero-subheadline').innerText = data.hero.subheadline;
+            document.getElementById('hero-cta').innerText = data.hero.cta_text;
+            document.getElementById('hero-img').src = data.hero.media_url;
+
+            // Variants
+            window.FUNNEL_STATE.selectedVariant = data.variants[1]; // Default to middle option
+            renderVariants();
+
+            // Bump
+            if (data.products.bump) {
+                document.getElementById('bump-name').innerText = data.products.bump.label;
+                document.getElementById('bump-price').innerText = '$' + data.products.bump.price.toFixed(2);
+            }
+        })();
+
+        function renderVariants() {
+            const container = document.getElementById('bundle-grid');
+            const variants = window.FUNNEL_DATA.variants;
+            const selectedId = window.FUNNEL_STATE.selectedVariant.id;
+            
+            container.innerHTML = variants.map(v => `
+                <div class="bundle-card ${v.id === selectedId ? 'selected' : ''} ${v.best_value ? 'best-value' : ''}" onclick="selectVariant('${v.id}')">
+                    <h3 style="margin: 0 0 0.5rem 0;">${v.label}</h3>
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color); margin-bottom: 0.5rem;">$${v.price}</div>
+                    <p style="font-size: 0.9rem; margin: 0;">${v.desc}</p>
+                </div>
+            `).join('');
+            
+            document.getElementById('main-checkout-btn').innerText = `Add ${window.FUNNEL_STATE.selectedVariant.label} - $${window.FUNNEL_STATE.selectedVariant.price}`;
+        }
+
+        window.selectVariant = function(id) {
+            window.FUNNEL_STATE.selectedVariant = window.FUNNEL_DATA.variants.find(v => v.id === id);
+            renderVariants();
+        };
+
+        window.openCheckout = function() {
+            document.getElementById('order-bump-check').checked = false;
+            updateCheckoutTotal();
+            document.getElementById('checkout-modal').style.display = 'flex';
+        };
+
+        window.updateCheckoutTotal = function() {
+            let total = window.FUNNEL_STATE.selectedVariant.price;
+            if (document.getElementById('order-bump-check').checked) {
+                total += window.FUNNEL_DATA.products.bump.price;
+            }
+            document.getElementById('checkout-total').innerText = '$' + total.toFixed(2);
+        };
+
+        window.toggleBump = function() { window.updateCheckoutTotal(); };
+
+        window.handleMainPurchase = function() {
+            const btn = document.getElementById('pay-button');
+            btn.innerText = "Processing...";
+            setTimeout(() => {
+                // Save Order
+                let total = window.FUNNEL_STATE.selectedVariant.price;
+                const items = [window.FUNNEL_STATE.selectedVariant];
+                if (document.getElementById('order-bump-check').checked) {
+                    const bump = window.FUNNEL_DATA.products.bump;
+                    total += bump.price;
+                    items.push(bump);
+                }
+                window.FUNNEL_STATE.lastOrder = { items, total };
+
+                // Show Upsell
+                document.getElementById('checkout-modal').style.display = 'none';
+                setupUpsell();
+                document.getElementById('upsell-page').style.display = 'block';
+                btn.innerText = "Complete Order";
+            }, 1500);
+        };
+
+        function setupUpsell() {
+            const data = window.FUNNEL_DATA.upsell_page;
+            document.getElementById('upsell-headline').innerText = data.headline;
+            document.getElementById('upsell-subheadline').innerText = data.subheadline;
+            document.getElementById('upsell-img').src = data.image_url;
+            document.getElementById('upsell-yes-btn').innerText = data.cta_yes;
+            document.getElementById('upsell-no-btn').innerText = data.cta_no;
+        }
+
+        window.handleUpsellPurchase = function() {
+            const upsell = window.FUNNEL_DATA.products.upsell;
+            window.FUNNEL_STATE.lastOrder.items.push(upsell);
+            window.FUNNEL_STATE.lastOrder.total += upsell.price;
+            finishFunnel();
+        };
+
+        window.handleUpsellDecline = function() {
+            finishFunnel();
+        };
+
+        function finishFunnel() {
+            document.getElementById('upsell-page').style.display = 'none';
+            const order = window.FUNNEL_STATE.lastOrder;
+            document.getElementById('order-summary').innerHTML = `
+                ${order.items.map(i => `<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>${i.label}</span><span>$${i.price.toFixed(2)}</span></div>`).join('')}
+                <hr style="border:none; border-top:1px solid #eee; margin:10px 0;">
+                <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.2rem;"><span>Total Paid</span><span>$${order.total.toFixed(2)}</span></div>
+            `;
+            document.getElementById('thank-you-modal').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
