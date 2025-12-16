@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Prototype for the Canvas Page Builder",
   "scripts": {
-    "dev": "npx http-server builder_ui -c-1 -o"
+    "dev": "npx http-server . -c-1 -o"
   },
   "dependencies": {},
   "devDependencies": {
